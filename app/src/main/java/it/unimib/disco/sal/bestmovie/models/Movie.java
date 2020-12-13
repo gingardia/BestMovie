@@ -13,7 +13,7 @@ public class Movie {
 
     public int budget;
 
-    public List<Genre> genres = null;
+    //public List<Genre> genres = null;
 
     public String homepage;
 
@@ -31,9 +31,9 @@ public class Movie {
 
     public String posterPath;
 
-    public List<ProductionCompany> productionCompanies = null;
+    //public List<ProductionCompany> productionCompanies = null;
 
-    public List<ProductionCountry> productionCountries = null;
+    //public List<ProductionCountry> productionCountries = null;
 
     public String releaseDate;
 
@@ -41,7 +41,7 @@ public class Movie {
 
     public int runtime;
 
-    public List<SpokenLanguage> spokenLanguages = null;
+    //public List<SpokenLanguage> spokenLanguages = null;
 
     public String status;
 
