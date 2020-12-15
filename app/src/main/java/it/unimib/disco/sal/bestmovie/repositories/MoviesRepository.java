@@ -1,8 +1,18 @@
 package it.unimib.disco.sal.bestmovie.repositories;
 
+import androidx.lifecycle.MutableLiveData;
+
+import java.util.List;
+
+import it.unimib.disco.sal.bestmovie.models.Movie;
+import it.unimib.disco.sal.bestmovie.models.MovieDetailsApiResponse;
 import it.unimib.disco.sal.bestmovie.services.MoviesService;
 import it.unimib.disco.sal.bestmovie.utils.Constants;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MoviesRepository {
 
@@ -10,7 +20,8 @@ public class MoviesRepository {
     private MoviesService moviesService;
 
     private MoviesRepository() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.MOVIE_API_BASE_URL).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.MOVIE_API_BASE_URL).
+                addConverterFactory(GsonConverterFactory.create()).build();
 
         moviesService = retrofit.create(MoviesService.class);
     }
@@ -20,5 +31,24 @@ public class MoviesRepository {
             instance = new MoviesRepository();
         }
         return instance;
+    }
+
+    public void getMovieDetails(MutableLiveData<List<Movie>> movies, String language) {
+        Call<MovieDetailsApiResponse> call = moviesService.getLatestMovies(language, Constants.MOVIE_API_BASE_URL);
+
+        call.enqueue(new Callback<MovieDetailsApiResponse>() {
+
+            //Chiamato se la chiamata va a buon fine
+            @Override
+            public void onResponse(Call<MovieDetailsApiResponse> call, Response<MovieDetailsApiResponse> response) {
+                response.body().getMovies();
+            }
+
+            //Chiamato se si verifica un errore e la chiamata non va a buon fine
+            @Override
+            public void onFailure(Call<MovieDetailsApiResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

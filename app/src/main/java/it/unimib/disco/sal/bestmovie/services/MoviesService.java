@@ -9,11 +9,9 @@ import retrofit2.http.Query;
 
 public interface MoviesService {
 
-    /*
     @GET("movie/latest")
     Call<MovieDetailsApiResponse> getLatestMovies(@Query("language") String language,
                                                   @Header("Authorization") String apiKey);
 
-     */
 
 }

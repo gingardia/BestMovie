@@ -7,20 +7,17 @@ import androidx.lifecycle.ViewModel;
 import java.util.List;
 
 import it.unimib.disco.sal.bestmovie.models.Movie;
+import it.unimib.disco.sal.bestmovie.repositories.MoviesRepository;
 
 public class MovieViewModel extends ViewModel {
-
     private MutableLiveData<List<Movie>> movies;
-    public LiveData<List<Movie>> getMovies() {
+
+    public LiveData<List<Movie>> getMovies(String language) {
         if (movies == null) {
-            movies = new MutableLiveData<List<Movie>>();
-            loadMovies();
+            movies = new MutableLiveData<>();
+            MoviesRepository.getInstance().getMovieDetails(movies, language);
         }
         return movies;
-    }
-
-    private void loadMovies() {
-        // Do an asynchronous operation to fetch users.
     }
 
 }
