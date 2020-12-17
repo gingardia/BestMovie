@@ -16,13 +16,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MoviesRepository {
 
+
     private static MoviesRepository instance;
     private MoviesService moviesService;
 
     private MoviesRepository() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.MOVIE_API_BASE_URL).
-                addConverterFactory(GsonConverterFactory.create()).build();
-
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.MOVIE_API_BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         moviesService = retrofit.create(MoviesService.class);
     }
 
@@ -33,22 +32,29 @@ public class MoviesRepository {
         return instance;
     }
 
-    public void getMovieDetails(MutableLiveData<List<Movie>> movies, String language) {
-        Call<MovieDetailsApiResponse> call = moviesService.getLatestMovies(language, Constants.MOVIE_API_BASE_URL);
+
+    public void getMovieDetails(MutableLiveData<List<Movie>> movies) {
+        Call<MovieDetailsApiResponse> call = moviesService.getMovies("latest", Constants.MOVIE_API_READ_ACCESS_TOKEN);
 
         call.enqueue(new Callback<MovieDetailsApiResponse>() {
 
             //Chiamato se la chiamata va a buon fine
             @Override
             public void onResponse(Call<MovieDetailsApiResponse> call, Response<MovieDetailsApiResponse> response) {
-                response.body().getMovies();
+                response.body().getResults();
             }
 
             //Chiamato se si verifica un errore e la chiamata non va a buon fine
             @Override
             public void onFailure(Call<MovieDetailsApiResponse> call, Throwable t) {
 
+                //t.printStackTrace();
+
             }
         });
     }
+
+
+
+
 }

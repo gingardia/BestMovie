@@ -4,13 +4,14 @@ import java.util.List;
 
 public class MovieDetailsApiResponse {
     private int page;
-    private List<Movie> movies;
+    //Prima: private List<Movie> movies;
+    private List<Movie> results;
     private int totalPages;
     private int totalResults;
 
     public MovieDetailsApiResponse(int page, List<Movie> movies, int totalPages, int totalResults) {
         this.page = page;
-        this.movies = movies;
+        this.results = movies;
         this.totalPages = totalPages;
         this.totalResults = totalResults;
     }
@@ -23,12 +24,12 @@ public class MovieDetailsApiResponse {
         this.page = page;
     }
 
-    public List<Movie> getMovies() {
-        return movies;
+    public List<Movie> getResults() {
+        return results;
     }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
+    public void setResults(List<Movie> results) {
+        this.results = results;
     }
 
     public int getTotalPages() {
