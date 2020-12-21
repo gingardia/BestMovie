@@ -1,5 +1,7 @@
 package it.unimib.disco.sal.bestmovie.repositories;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MoviesRepository {
 
+    private static final String TAG = "MoviesRepository";
 
     private static MoviesRepository instance;
     private MoviesService moviesService;
@@ -31,24 +34,23 @@ public class MoviesRepository {
         }
         return instance;
     }
-
-
-    public void getMovieDetails(MutableLiveData<List<Movie>> movies) {
-        Call<MovieDetailsApiResponse> call = moviesService.getMovies("latest", Constants.MOVIE_API_READ_ACCESS_TOKEN);
+    
+    public void getPopularMoviesDetails(MutableLiveData<List<Movie>> movies, int page) {
+        Call<MovieDetailsApiResponse> call = moviesService.getPopularMovies(Constants.MOVIE_API_KEY, Constants.LANGUAGE, page);
 
         call.enqueue(new Callback<MovieDetailsApiResponse>() {
 
             //Chiamato se la chiamata va a buon fine
             @Override
             public void onResponse(Call<MovieDetailsApiResponse> call, Response<MovieDetailsApiResponse> response) {
-                response.body().getResults();
+                movies.postValue(response.body().getResults());
             }
 
             //Chiamato se si verifica un errore e la chiamata non va a buon fine
             @Override
             public void onFailure(Call<MovieDetailsApiResponse> call, Throwable t) {
 
-                //t.printStackTrace();
+                Log.d(TAG, "Errore " + t.getMessage());
 
             }
         });

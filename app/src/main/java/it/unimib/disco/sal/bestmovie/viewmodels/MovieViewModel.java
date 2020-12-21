@@ -14,10 +14,10 @@ public class MovieViewModel extends ViewModel {
     private MutableLiveData<List<Movie>> movies;
 
 
-    public LiveData<List<Movie>> getMovies() {
+    public LiveData<List<Movie>> getMovies(int page) {
         if (movies == null) {
             movies = new MutableLiveData<>();
-            MoviesRepository.getInstance().getMovieDetails(movies);
+            MoviesRepository.getInstance().getPopularMoviesDetails(movies, page);
         }
         return movies;
     }

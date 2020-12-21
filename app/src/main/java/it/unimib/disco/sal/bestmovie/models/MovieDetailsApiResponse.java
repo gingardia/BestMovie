@@ -9,9 +9,9 @@ public class MovieDetailsApiResponse {
     private int totalPages;
     private int totalResults;
 
-    public MovieDetailsApiResponse(int page, List<Movie> movies, int totalPages, int totalResults) {
+    public MovieDetailsApiResponse(int page, List<Movie> results, int totalPages, int totalResults) {
         this.page = page;
-        this.results = movies;
+        this.results = results;
         this.totalPages = totalPages;
         this.totalResults = totalResults;
     }
