@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,16 +12,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import it.unimib.disco.sal.bestmovie.R;
 //import it.unimib.disco.sal.bestmovie.adapters.MovieAdapter;
+import it.unimib.disco.sal.bestmovie.adapters.MovieAdapter;
 import it.unimib.disco.sal.bestmovie.databinding.FragmentHomeBinding;
 import it.unimib.disco.sal.bestmovie.models.Movie;
-import it.unimib.disco.sal.bestmovie.repositories.MoviesRepository;
+import it.unimib.disco.sal.bestmovie.models.Resource;
 import it.unimib.disco.sal.bestmovie.viewmodels.MovieViewModel;
 
 public class HomeFragment extends Fragment {
@@ -43,8 +43,16 @@ public class HomeFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentHomeBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
+    }
+
+    /*
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
+     */
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -52,27 +60,40 @@ public class HomeFragment extends Fragment {
 
         movieViewModel = new ViewModelProvider(requireActivity()).get(MovieViewModel.class);
 
-        //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        //binding.moviesRecyclerView.setLayoutManager(layoutManager);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        binding.moviesRecyclerView.setLayoutManager(layoutManager);
 
-        final Observer<List<Movie>> observer = new Observer<List<Movie>>() {
+        final Observer<Resource<List<Movie>>> observer = new Observer<Resource<List<Movie>>>() {
             @Override
-            public void onChanged(List<Movie> results) {
+            public void onChanged(Resource<List<Movie>> moviesResource) {
 
-
-                for(int i=0; i<results.size(); i++) {
-                    Log.d(TAG, "Titolo film: " + i + " " + results.get(i).getTitle());
+                if(moviesResource.getData() != null) {
+                    for(int i=0; i<moviesResource.getData().size(); i++) {
+                        Log.d(TAG, "Info: " + "total results " + moviesResource.getTotalResults() + ", " + "status code " + moviesResource.getStatusCode() + " " + moviesResource.getStatusMessage());
+                        Log.d(TAG, "Titolo film: " + i + " " + moviesResource.getData().get(i).getTitle());
+                    }
+                } else {
+                    Log.d(TAG, "Info errore: " + "total results " + moviesResource.getTotalResults() + ", " + "status code " + moviesResource.getStatusCode() + " " + moviesResource.getStatusMessage());
                 }
 
-                //MovieAdapter movieAdapter = new MovieAdapter(getActivity(), results);
-                //binding.moviesRecyclerView.setAdapter(movieAdapter);
+
+                MovieAdapter movieAdapter = new MovieAdapter(getActivity(), moviesResource.getData(), new MovieAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Movie movie) {
+                        Log.d(TAG, "elemento premuto: " + movie.getTitle());
+
+                        // Permette di spostarci nel MovieDetailsFragment selezionando un film nella Home
+                        HomeFragmentDirections.ShowMovieDetailsAction action = HomeFragmentDirections.showMovieDetailsAction(movie);
+                        Navigation.findNavController(view).navigate(action);
+
+                    }
+                });
+                binding.moviesRecyclerView.setAdapter(movieAdapter);
 
             }
         };
 
-        //movieViewModel.getMovies(1).observe(this, observer);
-
-        LiveData<List<Movie>> liveData = movieViewModel.getMovies(1);
+        LiveData<Resource<List<Movie>>> liveData = movieViewModel.getMoviesResource(1);
 
         liveData.observe(getViewLifecycleOwner(), observer);
 

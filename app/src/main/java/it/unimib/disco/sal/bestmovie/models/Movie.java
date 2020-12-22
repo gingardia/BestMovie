@@ -1,8 +1,12 @@
 package it.unimib.disco.sal.bestmovie.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Movie {
+public class Movie implements Parcelable {
 
     public int id;
     public boolean adult;
@@ -227,4 +231,142 @@ public class Movie {
     public void setBelongsToCollection(BelongsToCollection belongsToCollection) {
         this.belongsToCollection = belongsToCollection;
     }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", adult=" + adult +
+                ", homepage='" + homepage + '\'' +
+                ", overview='" + overview + '\'' +
+                ", originalLanguage='" + originalLanguage + '\'' +
+                ", originalTitle='" + originalTitle + '\'' +
+                ", popularity=" + popularity +
+                ", posterPath='" + posterPath + '\'' +
+                ", backdropPath='" + backdropPath + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", title='" + title + '\'' +
+                ", video=" + video +
+                ", genres=" + genres +
+                ", voteAverage=" + voteAverage +
+                ", voteCount=" + voteCount +
+                ", status='" + status + '\'' +
+                ", imdbId='" + imdbId + '\'' +
+                ", tagline='" + tagline + '\'' +
+                ", productionCompanies=" + productionCompanies +
+                ", productionCountries=" + productionCountries +
+                ", spokenLanguages=" + spokenLanguages +
+                ", belongsToCollection=" + belongsToCollection +
+                '}';
+    }
+
+    //Generato con www.parcelabrer.com
+    protected Movie(Parcel in) {
+        id = in.readInt();
+        adult = in.readByte() != 0x00;
+        homepage = in.readString();
+        overview = in.readString();
+        originalLanguage = in.readString();
+        originalTitle = in.readString();
+        popularity = in.readFloat();
+        posterPath = in.readString();
+        backdropPath = in.readString();
+        releaseDate = in.readString();
+        title = in.readString();
+        video = in.readByte() != 0x00;
+        if (in.readByte() == 0x01) {
+            genres = new ArrayList<Genre>();
+            in.readList(genres, Genre.class.getClassLoader());
+        } else {
+            genres = null;
+        }
+        voteAverage = in.readFloat();
+        voteCount = in.readFloat();
+        status = in.readString();
+        imdbId = in.readString();
+        tagline = in.readString();
+        if (in.readByte() == 0x01) {
+            productionCompanies = new ArrayList<ProductionCompany>();
+            in.readList(productionCompanies, ProductionCompany.class.getClassLoader());
+        } else {
+            productionCompanies = null;
+        }
+        if (in.readByte() == 0x01) {
+            productionCountries = new ArrayList<ProductionCountry>();
+            in.readList(productionCountries, ProductionCountry.class.getClassLoader());
+        } else {
+            productionCountries = null;
+        }
+        if (in.readByte() == 0x01) {
+            spokenLanguages = new ArrayList<SpokenLanguage>();
+            in.readList(spokenLanguages, SpokenLanguage.class.getClassLoader());
+        } else {
+            spokenLanguages = null;
+        }
+        belongsToCollection = (BelongsToCollection) in.readValue(BelongsToCollection.class.getClassLoader());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeByte((byte) (adult ? 0x01 : 0x00));
+        dest.writeString(homepage);
+        dest.writeString(overview);
+        dest.writeString(originalLanguage);
+        dest.writeString(originalTitle);
+        dest.writeFloat(popularity);
+        dest.writeString(posterPath);
+        dest.writeString(backdropPath);
+        dest.writeString(releaseDate);
+        dest.writeString(title);
+        dest.writeByte((byte) (video ? 0x01 : 0x00));
+        if (genres == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(genres);
+        }
+        dest.writeFloat(voteAverage);
+        dest.writeFloat(voteCount);
+        dest.writeString(status);
+        dest.writeString(imdbId);
+        dest.writeString(tagline);
+        if (productionCompanies == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(productionCompanies);
+        }
+        if (productionCountries == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(productionCountries);
+        }
+        if (spokenLanguages == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(spokenLanguages);
+        }
+        dest.writeValue(belongsToCollection);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 }

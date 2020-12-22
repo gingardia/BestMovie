@@ -14,12 +14,16 @@ import java.util.List;
 import it.unimib.disco.sal.bestmovie.R;
 import it.unimib.disco.sal.bestmovie.databinding.FragmentHomeBinding;
 import it.unimib.disco.sal.bestmovie.models.Movie;
-/*
+
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
+    public interface OnItemClickListener {
+        void onItemClick(Movie movie);
+    }
 
     private List<Movie> movieList;
     private LayoutInflater layoutInflater;
+    private OnItemClickListener onItemClickListener;
 
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -30,30 +34,44 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             super(view);
             textViewMovieTitle = view.findViewById(R.id.textViewMovieTitle);
         }
+
+        public void bind(Movie movie, OnItemClickListener onItemClickListener) {
+            textViewMovieTitle.setText(movie.getTitle());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(movie);
+                }
+            });
+        }
     }
 
-    public MovieAdapter(Context context, List<Movie> movieList) {
+    public MovieAdapter(Context context, List<Movie> movieList, OnItemClickListener onItemClickListener) {
         this.layoutInflater = LayoutInflater.from(context);
         this.movieList = movieList;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = this.layoutInflater.inflate(R.layout.movie_item, parent, false);
         return new MovieViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-
-        holder.textViewMovieTitle.setText(movieList.get(position).getTitle());
+        holder.bind(movieList.get(position), this.onItemClickListener);
+        //holder.textViewMovieTitle.setText(movieList.get(position).getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return movieList.size();
+        if(movieList != null) {
+            return movieList.size();
+        }
+        return 0;
     }
 }
 
- */
+
