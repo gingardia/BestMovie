@@ -1,6 +1,7 @@
 package it.unimib.disco.sal.bestmovie.ui.search;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class SearchFragment extends Fragment {
         searchViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                //textView.setText(s);
+                Log.d(TAG, "Info: " + searchViewModel.mText);
             }
         });
         return root;

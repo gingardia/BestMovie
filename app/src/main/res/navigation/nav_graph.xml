@@ -13,16 +13,17 @@
         <action
             android:id="@+id/showMovieDetailsAction"
             app:destination="@id/movieDetailsFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_navigation_search"
-            app:destination="@id/navigation_search" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_search"
         android:name="it.unimib.disco.sal.bestmovie.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
