@@ -5,17 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
-
 import it.unimib.disco.sal.bestmovie.R;
-import it.unimib.disco.sal.bestmovie.databinding.FragmentHomeBinding;
 import it.unimib.disco.sal.bestmovie.models.Movie;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MovieViewHolder> {
 
     public interface OnItemClickListener {
         void onItemClick(Movie movie);
@@ -46,7 +42,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         }
     }
 
-    public MovieAdapter(Context context, List<Movie> movieList, OnItemClickListener onItemClickListener) {
+    public HomeAdapter(Context context, List<Movie> movieList, OnItemClickListener onItemClickListener) {
         this.layoutInflater = LayoutInflater.from(context);
         this.movieList = movieList;
         this.onItemClickListener = onItemClickListener;

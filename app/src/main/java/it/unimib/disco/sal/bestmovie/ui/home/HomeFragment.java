@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,11 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
-
-//import it.unimib.disco.sal.bestmovie.adapters.MovieAdapter;
-import it.unimib.disco.sal.bestmovie.adapters.MovieAdapter;
+import it.unimib.disco.sal.bestmovie.adapters.HomeAdapter;
 import it.unimib.disco.sal.bestmovie.databinding.FragmentHomeBinding;
 import it.unimib.disco.sal.bestmovie.models.Movie;
 import it.unimib.disco.sal.bestmovie.models.Resource;
@@ -30,7 +26,6 @@ public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
 
     private MovieViewModel movieViewModel;
-    private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
 
     public HomeFragment() {
@@ -77,7 +72,7 @@ public class HomeFragment extends Fragment {
                 }
 
 
-                MovieAdapter movieAdapter = new MovieAdapter(getActivity(), moviesResource.getData(), new MovieAdapter.OnItemClickListener() {
+                HomeAdapter homeAdapter = new HomeAdapter(getActivity(), moviesResource.getData(), new HomeAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Movie movie) {
                         Log.d(TAG, "elemento premuto: " + movie.getTitle());
@@ -88,7 +83,7 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
-                binding.moviesRecyclerView.setAdapter(movieAdapter);
+                binding.moviesRecyclerView.setAdapter(homeAdapter);
 
             }
         };
