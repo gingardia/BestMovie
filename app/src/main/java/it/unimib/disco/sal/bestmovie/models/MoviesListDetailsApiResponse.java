@@ -1,12 +1,16 @@
 package it.unimib.disco.sal.bestmovie.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class MoviesListDetailsApiResponse {
     private int page;
     //Prima: private List<Movie> movies;
     private List<Movie> results;
+    @SerializedName("total_pages")
     private int totalPages;
+    @SerializedName("total_results")
     private int totalResults;
 
     public MoviesListDetailsApiResponse(int page, List<Movie> results, int totalPages, int totalResults) {

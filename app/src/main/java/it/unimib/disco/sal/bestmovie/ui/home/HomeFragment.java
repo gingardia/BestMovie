@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
@@ -55,7 +56,9 @@ public class HomeFragment extends Fragment {
 
         movieViewModel = new ViewModelProvider(requireActivity()).get(MovieViewModel.class);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         binding.moviesRecyclerView.setLayoutManager(layoutManager);
 
         final Observer<Resource<List<Movie>>> observer = new Observer<Resource<List<Movie>>>() {

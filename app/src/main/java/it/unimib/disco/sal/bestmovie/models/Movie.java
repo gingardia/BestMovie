@@ -2,6 +2,9 @@ package it.unimib.disco.sal.bestmovie.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,7 @@ public class Movie implements Parcelable {
     public String originalLanguage;
     public String originalTitle;
     public float popularity;
+    @SerializedName("poster_path")
     public String posterPath;
     public String backdropPath;
     public String releaseDate; //format date, pattern = "yyyy-mm-dd"

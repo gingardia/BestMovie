@@ -36,7 +36,7 @@ public class MoviesRepository {
         }
         return instance;
     }
-
+    /*
     public void getSingularMovieDetails(int id, String language) {
         Call<Movie> call = moviesService.getDetails(id, Constants.MOVIE_API_KEY, Constants.LANGUAGE);
 
@@ -87,6 +87,8 @@ public class MoviesRepository {
             }
         });
     }
+
+     */
 
 
     public void getPopularMoviesDetails(MutableLiveData<Resource<List<Movie>>> moviesResource, int page) {
