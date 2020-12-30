@@ -29,12 +29,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MovieViewHolde
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewMovieTitle;
+        //TextView textViewMovieTitle;
         ImageView imageViewMovieItem;
 
         public MovieViewHolder(View view) {
             super(view);
-            textViewMovieTitle = view.findViewById(R.id.textViewMovieTitle);
+            //textViewMovieTitle = view.findViewById(R.id.textViewMovieTitle);
             imageViewMovieItem = view.findViewById(R.id.imageViewMovieItem);
         }
 
@@ -44,7 +44,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MovieViewHolde
 
             Picasso.get().load(imageUrl).into(imageViewMovieItem);
 
-            textViewMovieTitle.setText(movie.getTitle());
+            //textViewMovieTitle.setText(movie.getTitle());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

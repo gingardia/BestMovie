@@ -49,7 +49,7 @@ public class SearchFragment extends Fragment {
         searchViewModel = new ViewModelProvider(requireActivity()).get(MovieViewModelSearch.class);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        searchBinding.searchRecyclerView.setLayoutManager(layoutManager);
+        //searchBinding.searchRecyclerView.setLayoutManager(layoutManager);
 
         final Observer<Resource<Movie>> observer = new Observer<Resource<Movie>>() {
             @Override
@@ -76,7 +76,7 @@ public class SearchFragment extends Fragment {
 
                     }
                 });
-                searchBinding.searchRecyclerView.setAdapter(searchAdapter);
+                //searchBinding.searchRecyclerView.setAdapter(searchAdapter);
 
             }
         };

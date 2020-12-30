@@ -42,4 +42,9 @@
             android:name="movie"
             app:argType="it.unimib.disco.sal.bestmovie.models.Movie" />
     </fragment>
+    <activity
+        android:id="@+id/searchActivity"
+        android:name="it.unimib.disco.sal.bestmovie.SearchActivity"
+        android:label="activity_search"
+        tools:layout="@layout/activity_search" />
 </navigation>

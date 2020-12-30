@@ -25,10 +25,19 @@ public interface MoviesService {
                                                          @Query("language") String language,
                                                          @Query("page") int page);
 
+    @GET("movie/now_playing")
+    Call<MoviesListDetailsApiResponse> getUpcomingMovies(@Query("api_key") String apiKey,
+                                                         @Query("language") String language,
+                                                         @Query("page") int page,
+                                                         @Query("region") String region);
+
+
+    /*
     @GET("movie/latest")
     Call<Movie> getLatestMovie(@Query("api_key") String apiKey,
-                                                 @Query("language") String language,
-                                                 @Query("page") int page);
+                               @Query("language") String language);
+
+     */
 
     @GET("movie/{movie_id}")
     Call<Movie> getDetails(@Path("movie_id") int id,
