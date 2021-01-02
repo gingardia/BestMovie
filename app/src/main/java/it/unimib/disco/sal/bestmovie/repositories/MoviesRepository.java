@@ -36,30 +36,31 @@ public class MoviesRepository {
         }
         return instance;
     }
-    /*
-    public void getSingularMovieDetails(int id, String language) {
-        Call<Movie> call = moviesService.getDetails(id, Constants.MOVIE_API_KEY, Constants.LANGUAGE);
 
-        call.enqueue(new Callback<Movie>() {
+
+    public void getListSearchDetails(MutableLiveData<Resource<List<Movie>>> moviesResource, int page, String query) {
+        Call<MoviesListDetailsApiResponse> call = moviesService.getListSearch(Constants.MOVIE_API_KEY, Constants.LANGUAGE, page, query);
+
+        call.enqueue(new Callback<MoviesListDetailsApiResponse>() {
 
             @Override
-            public void onResponse(Call<Movie> call, Response<Movie> response) {
+            public void onResponse(Call<MoviesListDetailsApiResponse> call, Response<MoviesListDetailsApiResponse> response) {
 
                 if(response.isSuccessful() && response.body() != null) {
 
-                    Resource<Movie> resource = new Resource<>();
-                    //resource.setData((Movie) response.body().getResults());
-                    //resource.setTotalResults(response.body().getTotalResults());
+                    Resource<List<Movie>> resource = new Resource<>();
+                    resource.setData(response.body().getResults());
+                    resource.setTotalResults(response.body().getTotalResults());
                     resource.setStatusCode(response.code());
                     resource.setStatusMessage(response.message());
                     moviesResource.postValue(resource);
 
-                   // Log.d(TAG, "onResponse: " + response.body().getTotalResults());
+                    Log.d(TAG, "onResponse: " + response.body().getTotalResults());
 
 
                 } else if(response.errorBody() != null) {
 
-                    Resource<Movie> resource = new Resource<>();
+                    Resource<List<Movie>> resource = new Resource<>();
                     //resource.setData(null);
                     //resource.setTotalResults(null);
                     resource.setStatusCode(response.code());
@@ -69,13 +70,20 @@ public class MoviesRepository {
                         e.printStackTrace();
                     }
                     moviesResource.postValue(resource);
+
+
+                    /*try {
+                        new Throwable(response.errorBody().string()).printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }*/
                 }
             }
 
             @Override
             public void onFailure(Call<MoviesListDetailsApiResponse> call, Throwable t) {
 
-                Resource<Movie> resource = new Resource<>();
+                Resource<List<Movie>> resource = new Resource<>();
                 //resource.setData(null);
                 //resource.setTotalResults(null);
 
@@ -88,7 +96,7 @@ public class MoviesRepository {
         });
     }
 
-     */
+
 
 
     public void getPopularMoviesDetails(MutableLiveData<Resource<List<Movie>>> moviesResource, int page) {

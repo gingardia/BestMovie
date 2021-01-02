@@ -17,7 +17,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         void onItemClick(Movie movie);
     }
 
-    private Movie movie;
+    private List<Movie> searchList;
     private LayoutInflater layoutInflater;
     private OnItemClickListener onItemClickListener;
 
@@ -42,9 +42,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         }
     }
 
-    public SearchAdapter(Context context, Movie movie, OnItemClickListener onItemClickListener) {
+    public SearchAdapter(Context context, List<Movie> searchList, OnItemClickListener onItemClickListener) {
         this.layoutInflater = LayoutInflater.from(context);
-        this.movie = movie;
+        this.searchList = searchList;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -57,14 +57,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
-        holder.bind(movie, this.onItemClickListener);
-        //holder.textViewMovieTitle.setText(movieList.get(position).getTitle());
+        holder.textViewMovieTitle.setText(searchList.get(position).getTitle());
     }
 
     @Override
     public int getItemCount() {
-        if(movie != null) {
-            return 1;
+        if(searchList != null) {
+            return searchList.size();
         }
         return 0;
     }

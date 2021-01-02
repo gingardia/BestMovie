@@ -13,13 +13,13 @@ import it.unimib.disco.sal.bestmovie.utils.Constants;
 
 public class MovieViewModelSearch extends ViewModel {
 
-    private MutableLiveData<Resource<Movie>> movie;
+    private MutableLiveData<Resource<List<Movie>>> movies;
 
-    public LiveData<Resource<Movie>> getMovieSearch(int id) {
-        if (movie == null) {
-            movie = new MutableLiveData<>();
-            //MoviesRepository.getInstance().getSingularMovieDetails(id, Constants.LANGUAGE);
+    public LiveData<Resource<List<Movie>>> getMovieSearch(int page, String query) {
+        if (movies == null) {
+            movies = new MutableLiveData<>();
+            MoviesRepository.getInstance().getListSearchDetails(movies, page, query);
         }
-        return movie;
+        return movies;
     }
 }

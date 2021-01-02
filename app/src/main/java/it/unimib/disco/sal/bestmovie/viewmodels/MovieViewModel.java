@@ -22,7 +22,4 @@ public class MovieViewModel extends ViewModel {
         }
         return movies;
     }
-
-
-
 }

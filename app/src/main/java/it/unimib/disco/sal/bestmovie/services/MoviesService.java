@@ -31,13 +31,15 @@ public interface MoviesService {
                                                          @Query("page") int page,
                                                          @Query("region") String region);
 
+    @GET("movie/popular")
+    Call<MoviesListDetailsApiResponse> getListSearch(@Query("api_key") String apiKey,
+                                                     @Query("language") String language,
+                                                     @Query("page") int page,
+                                                     @Query("page") String query);
 
-    /*
     @GET("movie/latest")
     Call<Movie> getLatestMovie(@Query("api_key") String apiKey,
                                @Query("language") String language);
-
-     */
 
     @GET("movie/{movie_id}")
     Call<Movie> getDetails(@Path("movie_id") int id,
