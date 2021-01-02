@@ -12,14 +12,22 @@ import it.unimib.disco.sal.bestmovie.repositories.MoviesRepository;
 
 public class MovieViewModel extends ViewModel {
 
-    private MutableLiveData<Resource<List<Movie>>> movies;
-
+    private MutableLiveData<Resource<List<Movie>>> popularMovies, topRatedMovies, upcomingMovies, nowPlayingMovies;
 
     public LiveData<Resource<List<Movie>>> getMoviesResource(int page) {
-        if (movies == null) {
-            movies = new MutableLiveData<>();
-            MoviesRepository.getInstance().getPopularMoviesDetails(movies, page);
+        if (popularMovies == null) {
+            popularMovies = new MutableLiveData<>();
+            MoviesRepository.getInstance().getPopularMoviesDetails(popularMovies, page);
         }
-        return movies;
+        return popularMovies;
     }
+
+    public LiveData<Resource<List<Movie>>> getTopRatedMoviesResource(int page) {
+        if (topRatedMovies == null) {
+            topRatedMovies = new MutableLiveData<>();
+            MoviesRepository.getInstance().getPopularMoviesDetails(topRatedMovies, page);
+        }
+        return topRatedMovies;
+    }
+
 }

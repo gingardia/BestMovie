@@ -4,18 +4,23 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MoviesListDetailsApiResponse {
+public class UpcomingNowPlayingApiResponse {
+
+    @SerializedName("page")
     private int page;
-    //Prima: private List<Movie> movies;
+    @SerializedName("results")
     private List<Movie> results;
+    @SerializedName("dates")
+    private Dates dates;
     @SerializedName("total_pages")
     private int totalPages;
     @SerializedName("total_results")
     private int totalResults;
 
-    public MoviesListDetailsApiResponse(int page, List<Movie> results, int totalPages, int totalResults) {
+    public UpcomingNowPlayingApiResponse(int page, List<Movie> results, Dates dates, int totalPages, int totalResults) {
         this.page = page;
         this.results = results;
+        this.dates = dates;
         this.totalPages = totalPages;
         this.totalResults = totalResults;
     }
@@ -36,6 +41,14 @@ public class MoviesListDetailsApiResponse {
         this.results = results;
     }
 
+    public Dates getDates() {
+        return dates;
+    }
+
+    public void setDates(Dates dates) {
+        this.dates = dates;
+    }
+
     public int getTotalPages() {
         return totalPages;
     }
@@ -51,4 +64,5 @@ public class MoviesListDetailsApiResponse {
     public void setTotalResults(int totalResults) {
         this.totalResults = totalResults;
     }
+
 }

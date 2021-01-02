@@ -1,7 +1,7 @@
 package it.unimib.disco.sal.bestmovie.services;
 
 import it.unimib.disco.sal.bestmovie.models.Movie;
-import it.unimib.disco.sal.bestmovie.models.MoviesListDetailsApiResponse;
+import it.unimib.disco.sal.bestmovie.models.PopularTopRatedApiResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -11,31 +11,31 @@ import retrofit2.http.Query;
 public interface MoviesService {
 
     @GET("movie/popular")
-    Call<MoviesListDetailsApiResponse> getPopularMovies(@Query("api_key") String apiKey,
-                                                        @Query("language") String language,
-                                                        @Query("page") int page);
+    Call<PopularTopRatedApiResponse> getPopularMovies(@Query("api_key") String apiKey,
+                                                      @Query("language") String language,
+                                                      @Query("page") int page);
 
     @GET("movie/top_rated")
-    Call<MoviesListDetailsApiResponse> getTopRatedMovies(@Query("api_key") String apiKey,
-                                                         @Query("language") String language,
-                                                         @Query("page") int page);
+    Call<PopularTopRatedApiResponse> getTopRatedMovies(@Query("api_key") String apiKey,
+                                                       @Query("language") String language,
+                                                       @Query("page") int page);
 
     @GET("movie/upcoming")
-    Call<MoviesListDetailsApiResponse> getUpcomingMovies(@Query("api_key") String apiKey,
-                                                         @Query("language") String language,
-                                                         @Query("page") int page);
+    Call<PopularTopRatedApiResponse> getUpcomingMovies(@Query("api_key") String apiKey,
+                                                       @Query("language") String language,
+                                                       @Query("page") int page);
 
     @GET("movie/now_playing")
-    Call<MoviesListDetailsApiResponse> getUpcomingMovies(@Query("api_key") String apiKey,
-                                                         @Query("language") String language,
-                                                         @Query("page") int page,
-                                                         @Query("region") String region);
+    Call<PopularTopRatedApiResponse> getNowPlayingMovies(@Query("api_key") String apiKey,
+                                                       @Query("language") String language,
+                                                       @Query("page") int page,
+                                                       @Query("region") String region);
 
     @GET("movie/popular")
-    Call<MoviesListDetailsApiResponse> getListSearch(@Query("api_key") String apiKey,
-                                                     @Query("language") String language,
-                                                     @Query("page") int page,
-                                                     @Query("page") String query);
+    Call<PopularTopRatedApiResponse> getListSearch(@Query("api_key") String apiKey,
+                                                   @Query("language") String language,
+                                                   @Query("page") int page,
+                                                   @Query("page") String query);
 
     @GET("movie/latest")
     Call<Movie> getLatestMovie(@Query("api_key") String apiKey,
