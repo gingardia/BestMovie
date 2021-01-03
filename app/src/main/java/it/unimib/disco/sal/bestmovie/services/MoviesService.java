@@ -32,7 +32,7 @@ public interface MoviesService {
                                                        @Query("page") int page,
                                                        @Query("region") String region);
 
-    @GET("movie/popular")
+    @GET("movie/searchList")
     Call<PopularTopRatedApiResponse> getListSearch(@Query("api_key") String apiKey,
                                                    @Query("language") String language,
                                                    @Query("page") int page,

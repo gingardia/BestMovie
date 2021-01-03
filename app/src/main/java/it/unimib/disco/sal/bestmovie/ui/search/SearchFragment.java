@@ -5,8 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TabHost;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,9 +14,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -27,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unimib.disco.sal.bestmovie.R;
-import it.unimib.disco.sal.bestmovie.adapters.HomeAdapter;
 import it.unimib.disco.sal.bestmovie.adapters.SearchAdapter;
 import it.unimib.disco.sal.bestmovie.databinding.FragmentSearchBinding;
 import it.unimib.disco.sal.bestmovie.models.Movie;
@@ -75,19 +69,6 @@ public class SearchFragment extends Fragment {
 
         tabLayout.setupWithViewPager(viewPager);
 
-        /*TabHost tabHost = getActivity().findViewById(R.id.tabHost);
-        tabHost.setup();
-
-        //Tab 1 --> Cerca
-        TabHost.TabSpec spec = tabHost.newTabSpec("Tab Cerca");
-        spec.setContent(R.id.Cerca);
-        spec.setIndicator("Tab cerca");
-        tabHost.addTab(spec);
-
-        //Tab 2 --> Filtri
-        spec.setContent(R.id.Filtri);
-        spec.setIndicator("Tab filtri");
-        tabHost.addTab(spec);*/
 
         //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         //RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
@@ -99,12 +80,6 @@ public class SearchFragment extends Fragment {
                 SearchAdapter searchAdapter = new SearchAdapter(getActivity(), moviesResource.getData(), new SearchAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Movie movie) {
-                        Log.d(TAG, "elemento premuto: " + movie.getTitle());
-
-                        //Permette di spostarci nel MovieDetailsFragment selezionando un film nella Home
-                        //SearchFragmentDirections.ActionNavigationSearchToMovieDetailsFragment action = SearchFragmentDirections.actionNavigationSearchToMovieDetailsFragment(movie);
-                        //Navigation.findNavController(view).navigate(action);
-
                     }
                 });
                 //searchBinding.searchRecyclerView.setAdapter(searchAdapter);
@@ -151,7 +126,16 @@ public class SearchFragment extends Fragment {
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            return fragmentList.get(position);
+            switch (position) {
+                case 0:
+                    SearchFunctionFragment tab1 = new SearchFunctionFragment();
+                    return tab1;
+                case 1:
+                    FiltersFunctionFragment tab2 = new FiltersFunctionFragment();
+                    return tab2;
+                default:
+                    return null;
+            }
         }
 
         @Override
