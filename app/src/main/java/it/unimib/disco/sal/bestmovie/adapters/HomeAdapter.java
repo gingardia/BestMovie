@@ -42,7 +42,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MovieViewHolde
 
             String imageUrl = Constants.IMAGE_BASE_URL + "w500" + movie.getPosterPath();
 
-            Picasso.get().load(imageUrl).into(imageViewMovieItem);
+            Picasso.get().load(imageUrl).placeholder(R.drawable.ic_launcher_foreground).into(imageViewMovieItem);
 
             //textViewMovieTitle.setText(movie.getTitle());
             itemView.setOnClickListener(new View.OnClickListener() {

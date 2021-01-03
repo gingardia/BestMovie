@@ -2,6 +2,7 @@ package it.unimib.disco.sal.bestmovie.services;
 
 import it.unimib.disco.sal.bestmovie.models.Movie;
 import it.unimib.disco.sal.bestmovie.models.PopularTopRatedApiResponse;
+import it.unimib.disco.sal.bestmovie.models.UpcomingNowPlayingApiResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -21,12 +22,12 @@ public interface MoviesService {
                                                        @Query("page") int page);
 
     @GET("movie/upcoming")
-    Call<PopularTopRatedApiResponse> getUpcomingMovies(@Query("api_key") String apiKey,
-                                                       @Query("language") String language,
-                                                       @Query("page") int page);
+    Call<UpcomingNowPlayingApiResponse> getUpcomingMovies(@Query("api_key") String apiKey,
+                                                          @Query("language") String language,
+                                                          @Query("page") int page);
 
     @GET("movie/now_playing")
-    Call<PopularTopRatedApiResponse> getNowPlayingMovies(@Query("api_key") String apiKey,
+    Call<UpcomingNowPlayingApiResponse> getNowPlayingMovies(@Query("api_key") String apiKey,
                                                        @Query("language") String language,
                                                        @Query("page") int page,
                                                        @Query("region") String region);

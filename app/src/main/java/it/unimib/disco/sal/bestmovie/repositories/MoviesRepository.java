@@ -203,7 +203,7 @@ public class MoviesRepository {
             }
         });
     }
-    /*
+
     public void getUpcomingMoviesDetails(MutableLiveData<Resource<List<Movie>>> moviesResource, int page) {
         Call<UpcomingNowPlayingApiResponse> call = moviesService.getUpcomingMovies(Constants.MOVIE_API_KEY, Constants.LANGUAGE, page);
 
@@ -250,8 +250,8 @@ public class MoviesRepository {
         });
     }
 
-    public void getNowPlayingMoviesDetails(MutableLiveData<Resource<List<Movie>>> moviesResource, int page, String region) {
-        Call<UpcomingNowPlayingApiResponse> call = moviesService.getNowPlayingMovies(Constants.MOVIE_API_KEY, Constants.LANGUAGE, page, region);
+    public void getNowPlayingMoviesDetails(MutableLiveData<Resource<List<Movie>>> moviesResource, int page) {
+        Call<UpcomingNowPlayingApiResponse> call = moviesService.getNowPlayingMovies(Constants.MOVIE_API_KEY, Constants.LANGUAGE, page, Constants.region);
 
         call.enqueue(new Callback<UpcomingNowPlayingApiResponse>() {
 
@@ -296,7 +296,7 @@ public class MoviesRepository {
         });
     }
 
-     */
+
 
 
 

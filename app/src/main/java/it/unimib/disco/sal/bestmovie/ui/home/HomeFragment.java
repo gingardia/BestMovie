@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import it.unimib.disco.sal.bestmovie.adapters.HomeAdapter;
@@ -91,7 +90,7 @@ public class HomeFragment extends Fragment {
             }
         };
 
-        LiveData<Resource<List<Movie>>> liveData = movieViewModel.getMoviesResource(1);
+        LiveData<Resource<List<Movie>>> liveData = movieViewModel.getUpcomingMoviesResource(1);
 
         liveData.observe(getViewLifecycleOwner(), observer);
 
