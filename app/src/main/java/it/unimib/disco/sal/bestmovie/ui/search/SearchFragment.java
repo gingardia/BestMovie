@@ -38,11 +38,6 @@ public class SearchFragment extends Fragment {
         // Required empty constructor
     }
 
-    public static SearchFragment newInstance() {
-        SearchFragment fragment = new SearchFragment();
-        return fragment;
-    }
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         searchBinding = FragmentSearchBinding.inflate(getLayoutInflater());
         return searchBinding.getRoot();
@@ -66,13 +61,10 @@ public class SearchFragment extends Fragment {
         arrayList.add("Filtri");
 
         prepareViewPager(viewPager,arrayList);
-
         tabLayout.setupWithViewPager(viewPager);
-
 
         //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         //RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-        //searchBinding.tabHost.setLayoutManager(layoutManager);
 
         final Observer<Resource<List<Movie>>> observer = new Observer<Resource<List<Movie>>>() {
             @Override
@@ -82,17 +74,11 @@ public class SearchFragment extends Fragment {
                     public void onItemClick(Movie movie) {
                     }
                 });
-                //searchBinding.searchRecyclerView.setAdapter(searchAdapter);
-
             }
         };
 
         LiveData<Resource<List<Movie>>> liveData = searchViewModel.getMovieSearch(19, "Harry");
-
         liveData.observe(getViewLifecycleOwner(), observer);
-
-
-
     }
 
     private void prepareViewPager(ViewPager viewPager, ArrayList<String> arrayList) {
