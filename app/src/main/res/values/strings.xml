@@ -6,6 +6,6 @@
     <string name="search_default">Inserisci il titolo di un film!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="upcoming">upcomingCategoryTitle</string>
-    <string name="view_all">ViewAll</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="view_all">View All</string>
 </resources>
