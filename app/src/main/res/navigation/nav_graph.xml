@@ -9,7 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="it.unimib.disco.sal.bestmovie.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home_show_movies" >
+        tools:layout="@layout/fragment_home_new" >
         <action
             android:id="@+id/showMovieDetailsAction"
             app:destination="@id/movieDetailsFragment" />
