@@ -25,7 +25,7 @@ public class MoviesRepository {
     private static MoviesRepository instance;
     private MoviesService moviesService;
 
-    private MoviesRepository() {
+    public MoviesRepository() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.MOVIE_API_BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         moviesService = retrofit.create(MoviesService.class);
     }
