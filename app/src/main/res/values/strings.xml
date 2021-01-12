@@ -8,4 +8,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="upcoming">Upcoming</string>
     <string name="view_all">View All</string>
+    <string name="home">Home</string>
+    <string name="search">Cerca</string>
+    <string name="something_went_wrong">Qualcosa è andato storto... Perfavore, riprova</string>
+    <string name="search_results">Risultati ricerca</string>
+    <string name="no_search_results_found">Nessun risultato</string>
+    <string name="search_any_movie_here">Cerca un film qui..</string>
+    <string name="search_with_filters">Ricerca con filtri</string>
+    <string name="high_popularity">Più popolari</string>
+    <string name="low_popularity">Meno popolari</string>
+    <string name="high_votes">Più votati</string>
+    <string name="low_votes">Meno votati</string>
 </resources>

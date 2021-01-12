@@ -1,13 +1,13 @@
 package it.unimib.disco.sal.bestmovie.ui.search;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -15,32 +15,34 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.tabs.TabLayout;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import it.unimib.disco.sal.bestmovie.R;
 import it.unimib.disco.sal.bestmovie.adapters.SearchAdapter;
 import it.unimib.disco.sal.bestmovie.databinding.FragmentSearchBinding;
 import it.unimib.disco.sal.bestmovie.models.Movie;
 import it.unimib.disco.sal.bestmovie.models.Resource;
+import it.unimib.disco.sal.bestmovie.viewmodels.ActivityMainViewModel;
 import it.unimib.disco.sal.bestmovie.viewmodels.MovieViewModelSearch;
 
 public class SearchFragment extends Fragment {
 
-    private MovieViewModelSearch searchViewModel;
+    private ActivityMainViewModel activityMainViewModel;
     private static final String TAG = "SearchFragment";
-    private FragmentSearchBinding searchBinding;
+    private ViewDataBinding fragmentSearchBinding;
+    private final String[] titles = {"Search", "Filters"};
 
     public SearchFragment() {
-        // Required empty constructor
+        super(R.layout.fragment_search);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        searchBinding = FragmentSearchBinding.inflate(getLayoutInflater());
-        return searchBinding.getRoot();
+        super.onCreateView(inflater, container, savedInstanceState);
+        fragmentSearchBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false);
+        fragmentSearchBinding.setLifecycleOwner(this);
+        activityMainViewModel = new ViewModelProvider(this).get(ActivityMainViewModel.class);
+        return fragmentSearchBinding.getRoot();
     }
 
     @Override
@@ -48,6 +50,7 @@ public class SearchFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        /*
         searchViewModel = new ViewModelProvider(requireActivity()).get(MovieViewModelSearch.class);
         TabLayout tabLayout;
         ViewPager viewPager;
@@ -79,6 +82,7 @@ public class SearchFragment extends Fragment {
 
         LiveData<Resource<List<Movie>>> liveData = searchViewModel.getMovieSearch(19, "Harry");
         liveData.observe(getViewLifecycleOwner(), observer);
+        */
     }
 
     private void prepareViewPager(ViewPager viewPager, ArrayList<String> arrayList) {
