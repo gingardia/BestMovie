@@ -1,6 +1,9 @@
 package it.unimib.disco.sal.bestmovie.services;
 
+import it.unimib.disco.sal.bestmovie.models.AllGenreResponse;
 import it.unimib.disco.sal.bestmovie.models.Movie;
+import it.unimib.disco.sal.bestmovie.models.MovieDescription;
+import it.unimib.disco.sal.bestmovie.models.MoviesResponse;
 import it.unimib.disco.sal.bestmovie.models.PopularTopRatedApiResponse;
 import it.unimib.disco.sal.bestmovie.models.UpcomingNowPlayingApiResponse;
 import retrofit2.Call;
@@ -36,15 +39,30 @@ public interface MoviesService {
     Call<PopularTopRatedApiResponse> getListSearch(@Query("api_key") String apiKey,
                                                    @Query("language") String language,
                                                    @Query("page") int page,
-                                                   @Query("page") String query);
+                                                   @Query("query") String query);
+
+    @GET("movie/{id}")
+    Call<MovieDescription> getMovieDescription(@Path("id") int movieID,
+                                               @Query("api_key") String apiKey,
+                                               @Query("language") String language,
+                                               @Query("append_to_response") String videos);
+
+    @GET("search/movie")
+    Call<MoviesResponse> searchMovieByTitle(@Query("api_key") String apiKey,
+                                            @Query("language") String language,
+                                            @Query("query") String videos);
+
+    @GET("genre/movie/list")
+    Call<AllGenreResponse> getAllMovieGenres(@Query("api_key") String apiKey,
+                                             @Query("language") String language);
+
+    @GET("discover/movie")
+    Call<MoviesResponse> getMoviesSortedBy(@Query("api_key") String apiKey,
+                                           @Query("language") String language,
+                                           @Query("with_genres") String genreIDS,
+                                           @Query("sort_by") String sortBy);
 
     @GET("movie/latest")
     Call<Movie> getLatestMovie(@Query("api_key") String apiKey,
                                @Query("language") String language);
-
-    @GET("movie/{movie_id}")
-    Call<Movie> getDetails(@Path("movie_id") int id,
-                           @Query("api_key") String apiKey,
-                           @Query("language") String language);
-
 }

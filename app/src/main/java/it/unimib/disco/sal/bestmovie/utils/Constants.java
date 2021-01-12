@@ -9,4 +9,5 @@ public class Constants {
     public static final String LANGUAGE = "it";
     public static final String region = "IT";
     public static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
+    public static String VIDEOS = "videos";
 }
