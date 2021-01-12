@@ -10,29 +10,29 @@ import java.util.List;
 
 public class Movie implements Parcelable {
 
-    public int id;
-    public boolean adult;
-    public String homepage;
-    public String overview;
-    public String originalLanguage;
-    public String originalTitle;
-    public float popularity;
+    private int id;
+    private boolean adult;
+    private String homepage;
+    private String overview;
+    private String originalLanguage;
+    private String originalTitle;
+    private float popularity;
     @SerializedName("poster_path")
-    public String posterPath;
-    public String backdropPath;
-    public String releaseDate; //format date, pattern = "yyyy-mm-dd"
-    public String title;
-    public boolean video;
-    public List<Genre> genres = null;
-    public float voteAverage;
-    public float voteCount;
-    public String status; // "Released" or "DATROVARE"
-    public String imdbId; // minLength = 9, maxLength=9, pattern = ^tt[0-9]{7} (esempio: tt12416066)
-    public String tagline;
-    public List<ProductionCompany> productionCompanies = null;
-    public List<ProductionCountry> productionCountries = null;
-    public List<SpokenLanguage> spokenLanguages = null;
-    public BelongsToCollection belongsToCollection;
+    private String posterPath;
+    private String backdropPath;
+    private String releaseDate; //format date, pattern = "yyyy-mm-dd"
+    private String title;
+    private boolean video;
+    private List<Genre> genres = null;
+    private float voteAverage;
+    private float voteCount;
+    private String status; // "Released" or "DATROVARE"
+    private String imdbId; // minLength = 9, maxLength=9, pattern = ^tt[0-9]{7} (esempio: tt12416066)
+    private String tagline;
+    private List<ProductionCompany> productionCompanies = null;
+    private List<ProductionCountry> productionCountries = null;
+    private List<SpokenLanguage> spokenLanguages = null;
+    private BelongsToCollection belongsToCollection;
 
     public Movie(int id, boolean adult, String homepage, String overview, String originalLanguage, String originalTitle, float popularity, String posterPath, String backdropPath, String releaseDate, String title, boolean video, List<Genre> genres, float voteAverage, float voteCount, String status, String imdbId, String tagline, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, List<SpokenLanguage> spokenLanguages, BelongsToCollection belongsToCollection) {
         this.id = id;
