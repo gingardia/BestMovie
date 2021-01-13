@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "it.unimib.disco.sal.bestmovie"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -28,12 +28,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildFeatures {
-        viewBinding = true
-    }
+    //buildFeatures {
+    //    viewBinding = true
+    //}
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -63,5 +63,16 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     apply plugin: "androidx.navigation.safeargs"
+
+    //Lifecycle
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //Jetpack Navigation
+    def nav_version = "2.3.2"
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    //YouTube Player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
 }

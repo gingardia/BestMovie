@@ -17,6 +17,9 @@ public class MovieViewModel extends ViewModel {
 
     private MutableLiveData<List<Movie>> popularMovies, topRatedMovies, upcomingMovies, nowPlayingMovies;
     private MutableLiveData<MovieDescription> movieDescriptionResponse;
+    private MutableLiveData<MoviesResponse> searchMovieByTitleResponse;
+    private MutableLiveData<AllGenreResponse> getAllMovieGenresResponse;
+    private LiveData<MoviesResponse> getMoviesSortedByResponse;
 
     public LiveData<List<Movie>> getPopularMovie() {
         if (popularMovies == null) {
@@ -59,30 +62,29 @@ public class MovieViewModel extends ViewModel {
         return movieDescriptionResponse;
     }
 
-    /*
+    // VERIFICARE CHE SIA CORRETTO
     public LiveData<MoviesResponse> searchMoviesByTitle(String searchTerm){
         if(searchTerm != null && !searchTerm.isEmpty()){
             MoviesRepository.getInstance().searchMovieByTitle(searchTerm);
-            searchMovieByTitleResponse = mainActivityRepository.getSearchMovieByTitleResponseLiveData();
+            searchMovieByTitleResponse = MoviesRepository.getInstance().getSearchMovieByTitleResponseLiveData();
             return searchMovieByTitleResponse;
         }else{
             return null;
         }
     }
 
+    // VERIFICARE CHE SIA CORRETTO
     public LiveData<AllGenreResponse> getAllMovieGenres(){
         MoviesRepository.getInstance().getAllMovieGenres();
-        getAllMovieGenresResponse = mainActivityRepository.getAllMovieGenresLiveData();
+        getAllMovieGenresResponse = MoviesRepository.getInstance().getAllMovieGenresLiveData();
         return getAllMovieGenresResponse;
     }
 
+    // VERIFICARE CHE SIA CORRETTO
     public LiveData<MoviesResponse> filterMoviesBy(String filter, String genres){
         MoviesRepository.getInstance().getMoviesSortedBy(filter, genres);
-        getMoviesSortedByResponse = mainActivityRepository.getMoviesSortedByResponseLiveData();
+        getMoviesSortedByResponse = MoviesRepository.getInstance().getMoviesSortedByResponseLiveData();
         return getMoviesSortedByResponse;
     }
-
-     */
-
 
 }

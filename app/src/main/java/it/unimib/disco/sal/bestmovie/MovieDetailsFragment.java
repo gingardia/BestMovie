@@ -2,83 +2,105 @@ package it.unimib.disco.sal.bestmovie;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+
+import java.util.List;
 
 import it.unimib.disco.sal.bestmovie.databinding.FragmentHomeBinding;
-import it.unimib.disco.sal.bestmovie.databinding.FragmentMovieDetailsBinding;
+import it.unimib.disco.sal.bestmovie.databinding.FragmentMovieDetailBinding;
 import it.unimib.disco.sal.bestmovie.models.Movie;
+import it.unimib.disco.sal.bestmovie.models.Result;
+import it.unimib.disco.sal.bestmovie.utils.Constants;
+import it.unimib.disco.sal.bestmovie.viewmodels.MovieViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MovieDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class MovieDetailsFragment extends Fragment {
-
-    private static final String TAG = "MovieDetailsFragment";
-    private FragmentMovieDetailsBinding binding;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private final String TAG = "MovieDetailFragment";
+    private FragmentMovieDetailBinding fragmentMovieDetailBinding;
+    private MovieViewModel activityMainViewModel;
     public MovieDetailsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MovieDetailsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MovieDetailsFragment newInstance(String param1, String param2) {
-        MovieDetailsFragment fragment = new MovieDetailsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        super(R.layout.fragment_movie_detail);
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding = FragmentMovieDetailsBinding.inflate(getLayoutInflater());
-        return binding.getRoot();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        fragmentMovieDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false);
+        activityMainViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
+        fragmentMovieDetailBinding.setLifecycleOwner(this);
+        return fragmentMovieDetailBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Movie movie = MovieDetailsFragmentArgs.fromBundle(getArguments()).getMovie();
 
-        binding.textViewMovieTitle.setText(movie.getTitle());
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                if(getArguments().getBoolean(Constants.IS_FROM_HOME))
+                    Navigation.findNavController(view).navigate(R.id.action_movieDetailFragment_to_homeFragment);
+                else
+                    Navigation.findNavController(view).navigate(R.id.action_movieDetailFragment_to_searchFragment);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(requireActivity(), callback);
 
-        Log.d(TAG, "Dettaglio: " + movie);
+        fragmentMovieDetailBinding.clMovieDetail.setVisibility(View.GONE);
+        fragmentMovieDetailBinding.pbMovieDetailFragment.setVisibility(View.VISIBLE);
+
+        int movieID = getArguments().getInt(Constants.BUNDLE_ID_MOVIE_ID);
+        Log.d(TAG, "onViewCreated: " + movieID);
+
+        if (movieID == 0) {
+            Toast.makeText(requireContext(), R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
+            requireActivity().finish();
+        } else {
+            activityMainViewModel.getMovieDescription(movieID).observe(getViewLifecycleOwner(), movieDescriptionResponse -> {
+                if (movieDescriptionResponse == null) {
+                    Log.d(TAG, "onViewCreated: null");
+                    Toast.makeText(requireContext(), R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
+                    requireActivity().finish();
+                } else {
+                    fragmentMovieDetailBinding.setMovieDetail(movieDescriptionResponse);
+                    fragmentMovieDetailBinding.pbMovieDetailFragment.setVisibility(View.GONE);
+                    fragmentMovieDetailBinding.clMovieDetail.setVisibility(View.VISIBLE);
+
+                    //Make Movie Long Description TextView Scrollable
+                    fragmentMovieDetailBinding.tvMovieDescription.setMovementMethod(new ScrollingMovementMethod());
+
+                    //Set video URL to YouTube player
+                    fragmentMovieDetailBinding.youTubePlayerView2.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                        @Override
+                        public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                            List<Result> videoResults = movieDescriptionResponse.getVideos().getResults();
+                            for(Result result : videoResults){
+                                if(result.getSite().equalsIgnoreCase("YouTube")){
+                                    if(!result.getId().isEmpty()) {
+                                        youTubePlayer.loadVideo(result.getKey(), 0);
+                                        youTubePlayer.pause();
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        }
     }
 }

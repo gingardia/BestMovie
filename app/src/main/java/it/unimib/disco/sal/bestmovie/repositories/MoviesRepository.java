@@ -158,7 +158,6 @@ public class MoviesRepository {
     }
 
     public void searchMovieByTitle(String searchQuery) {
-        searchMovieByTitleResponse = new MutableLiveData<>();
         Call<MoviesResponse> call = moviesService.searchMovieByTitle(Constants.MOVIE_API_KEY, Constants.LANGUAGE, searchQuery);
 
         call.enqueue(new Callback<MoviesResponse>() {
@@ -179,7 +178,6 @@ public class MoviesRepository {
     }
 
     public void getAllMovieGenres(){
-        getAllMovieGenresResponse = new MutableLiveData<>();
         Call<AllGenreResponse> call = moviesService.getAllMovieGenres(Constants.MOVIE_API_KEY, Constants.LANGUAGE);
 
         call.enqueue(new Callback<AllGenreResponse>() {
@@ -201,7 +199,6 @@ public class MoviesRepository {
     }
 
     public void getMoviesSortedBy(String filter, String genres){
-        getMoviesSortedByResponse = new MutableLiveData<>();
         Call<MoviesResponse> call = moviesService.getMoviesSortedBy(Constants.MOVIE_API_KEY, Constants.LANGUAGE, genres, filter);
 
         call.enqueue(new Callback<MoviesResponse>() {
@@ -221,19 +218,19 @@ public class MoviesRepository {
         });
     }
         
-    public LiveData<MovieDescription> getMovieDescriptionLiveData() {
+    public MutableLiveData<MovieDescription> getMovieDescriptionLiveData() {
         return movieDescriptionLiveDataResponse;
     }
 
-    public LiveData<MoviesResponse> getSearchMovieByTitleResponseLiveData(){
+    public MutableLiveData<MoviesResponse> getSearchMovieByTitleResponseLiveData(){
         return searchMovieByTitleResponse;
     }
 
-    public LiveData<AllGenreResponse> getAllMovieGenresLiveData(){
+    public MutableLiveData<AllGenreResponse> getAllMovieGenresLiveData(){
         return getAllMovieGenresResponse;
     }
 
-    public LiveData<MoviesResponse> getMoviesSortedByResponseLiveData(){
+    public MutableLiveData<MoviesResponse> getMoviesSortedByResponseLiveData(){
         return getMoviesSortedByResponse;
     }
 

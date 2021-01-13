@@ -24,7 +24,7 @@ public class Movie implements Parcelable {
     private String title;
     private boolean video;
     private List<Genre> genres = null;
-    private float voteAverage;
+    private Double voteAverage;
     private float voteCount;
     private String status; // "Released" or "DATROVARE"
     private String imdbId; // minLength = 9, maxLength=9, pattern = ^tt[0-9]{7} (esempio: tt12416066)
@@ -34,7 +34,7 @@ public class Movie implements Parcelable {
     private List<SpokenLanguage> spokenLanguages = null;
     private BelongsToCollection belongsToCollection;
 
-    public Movie(int id, boolean adult, String homepage, String overview, String originalLanguage, String originalTitle, float popularity, String posterPath, String backdropPath, String releaseDate, String title, boolean video, List<Genre> genres, float voteAverage, float voteCount, String status, String imdbId, String tagline, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, List<SpokenLanguage> spokenLanguages, BelongsToCollection belongsToCollection) {
+    public Movie(int id, boolean adult, String homepage, String overview, String originalLanguage, String originalTitle, float popularity, String posterPath, String backdropPath, String releaseDate, String title, boolean video, List<Genre> genres, Double voteAverage, float voteCount, String status, String imdbId, String tagline, List<ProductionCompany> productionCompanies, List<ProductionCountry> productionCountries, List<SpokenLanguage> spokenLanguages, BelongsToCollection belongsToCollection) {
         this.id = id;
         this.adult = adult;
         this.homepage = homepage;
@@ -163,11 +163,11 @@ public class Movie implements Parcelable {
         this.genres = genres;
     }
 
-    public float getVoteAverage() {
+    public Double getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(float voteAverage) {
+    public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
     }
 
@@ -283,7 +283,7 @@ public class Movie implements Parcelable {
         } else {
             genres = null;
         }
-        voteAverage = in.readFloat();
+        voteAverage = in.readDouble();
         voteCount = in.readFloat();
         status = in.readString();
         imdbId = in.readString();
@@ -334,7 +334,7 @@ public class Movie implements Parcelable {
             dest.writeByte((byte) (0x01));
             dest.writeList(genres);
         }
-        dest.writeFloat(voteAverage);
+        dest.writeDouble(voteAverage);
         dest.writeFloat(voteCount);
         dest.writeString(status);
         dest.writeString(imdbId);

@@ -3,34 +3,39 @@ package it.unimib.disco.sal.bestmovie;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import it.unimib.disco.sal.bestmovie.databinding.ActivityMainBinding;
+import it.unimib.disco.sal.bestmovie.viewmodels.ActivityMainViewModel;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding activityMainDataBinding = null;
+    private ActivityMainViewModel activityMainViewModel = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar().hide(); // hide the title bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
-        setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_search, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+
+        setUpDataBindingAndViewModel();
+        setUpNavigation();
     }
 
+    private void setUpDataBindingAndViewModel() {
+        activityMainDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        activityMainDataBinding.setLifecycleOwner(this);
+    }
+
+    public void setUpNavigation() {
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+    }
 }
