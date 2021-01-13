@@ -61,21 +61,12 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         binding.homeUpcomingRecyclerView.setLayoutManager(layoutManager);
 
-        final Observer<Resource<List<Movie>>> observer = new Observer<Resource<List<Movie>>>() {
+        final Observer<List<Movie>> observer = new Observer<List<Movie>>() {
             @Override
-            public void onChanged(Resource<List<Movie>> moviesResource) {
-
-                if(moviesResource.getData() != null) {
-                    for(int i=0; i<moviesResource.getData().size(); i++) {
-                        Log.d(TAG, "Info: " + "total results " + moviesResource.getTotalResults() + ", " + "status code " + moviesResource.getStatusCode() + " " + moviesResource.getStatusMessage());
-                        Log.d(TAG, "Titolo film: " + i + " " + moviesResource.getData().get(i).getTitle());
-                    }
-                } else {
-                    Log.d(TAG, "Info errore: " + "total results " + moviesResource.getTotalResults() + ", " + "status code " + moviesResource.getStatusCode() + " " + moviesResource.getStatusMessage());
-                }
+            public void onChanged(List<Movie> movies) {
 
 
-                HomeAdapter homeAdapter = new HomeAdapter(getActivity(), moviesResource.getData(), new HomeAdapter.OnItemClickListener() {
+                HomeAdapter homeAdapter = new HomeAdapter(getActivity(), movies, new HomeAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Movie movie) {
                         Log.d(TAG, "elemento premuto: " + movie.getTitle());
@@ -91,7 +82,7 @@ public class HomeFragment extends Fragment {
             }
         };
 
-        LiveData<Resource<List<Movie>>> liveData = movieViewModel.getUpcomingMoviesResource(1);
+        LiveData<List<Movie>> liveData = movieViewModel.getUpcomingMovie();
 
         liveData.observe(getViewLifecycleOwner(), observer);
 

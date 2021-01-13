@@ -18,7 +18,7 @@ public class MovieViewModelSearch extends ViewModel {
     public LiveData<Resource<List<Movie>>> getMovieSearch(int page, String query) {
         if (movies == null) {
             movies = new MutableLiveData<>();
-            MoviesRepository.getInstance().getListSearchDetails(movies, page, query);
+            //MoviesRepository.getInstance().getListSearchDetails(movies, page, query);
         }
         return movies;
     }

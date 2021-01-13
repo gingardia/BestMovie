@@ -15,26 +15,23 @@ import retrofit2.http.Query;
 public interface MoviesService {
 
     @GET("movie/popular")
-    Call<PopularTopRatedApiResponse> getPopularMovies(@Query("api_key") String apiKey,
-                                                      @Query("language") String language,
-                                                      @Query("page") int page);
+    Call<MoviesResponse> getPopularMovies(@Query("api_key") String apiKey,
+                                          @Query("language") String language);
 
     @GET("movie/top_rated")
-    Call<PopularTopRatedApiResponse> getTopRatedMovies(@Query("api_key") String apiKey,
-                                                       @Query("language") String language,
-                                                       @Query("page") int page);
+    Call<MoviesResponse> getTopRatedMovies(@Query("api_key") String apiKey,
+                                           @Query("language") String language);
 
     @GET("movie/upcoming")
-    Call<UpcomingNowPlayingApiResponse> getUpcomingMovies(@Query("api_key") String apiKey,
-                                                          @Query("language") String language,
-                                                          @Query("page") int page);
+    Call<MoviesResponse> getUpcomingMovies(@Query("api_key") String apiKey,
+                                           @Query("language") String language);
 
     @GET("movie/now_playing")
-    Call<UpcomingNowPlayingApiResponse> getNowPlayingMovies(@Query("api_key") String apiKey,
-                                                       @Query("language") String language,
-                                                       @Query("page") int page,
-                                                       @Query("region") String region);
+    Call<MoviesResponse> getNowPlayingMovies(@Query("api_key") String apiKey,
+                                             @Query("language") String language,
+                                             @Query("region") String region);
 
+    // DA MODIFICARE
     @GET("movie/searchList")
     Call<PopularTopRatedApiResponse> getListSearch(@Query("api_key") String apiKey,
                                                    @Query("language") String language,
