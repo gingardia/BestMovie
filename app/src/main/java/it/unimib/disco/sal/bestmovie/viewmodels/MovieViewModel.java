@@ -21,7 +21,7 @@ public class MovieViewModel extends ViewModel {
     private MutableLiveData<AllGenreResponse> getAllMovieGenresResponse;
     private LiveData<MoviesResponse> getMoviesSortedByResponse;
 
-    public LiveData<List<Movie>> getPopularMovie() {
+    public LiveData<List<Movie>> getPopularMovies() {
         if (popularMovies == null) {
             popularMovies = new MutableLiveData<>();
             MoviesRepository.getInstance().getPopularMovies(popularMovies);
@@ -29,7 +29,7 @@ public class MovieViewModel extends ViewModel {
         return popularMovies;
     }
 
-    public LiveData<List<Movie>> getTopRatedMovie() {
+    public LiveData<List<Movie>> getTopRatedMovies() {
         if (topRatedMovies == null) {
             topRatedMovies = new MutableLiveData<>();
             MoviesRepository.getInstance().getTopRatedMovies(topRatedMovies);
@@ -37,7 +37,7 @@ public class MovieViewModel extends ViewModel {
         return topRatedMovies;
     }
 
-    public LiveData<List<Movie>> getUpcomingMovie() {
+    public LiveData<List<Movie>> getUpcomingMovies() {
         if (upcomingMovies == null) {
             upcomingMovies = new MutableLiveData<>();
             MoviesRepository.getInstance().getUpcomingMovies(upcomingMovies);
@@ -45,7 +45,7 @@ public class MovieViewModel extends ViewModel {
         return upcomingMovies;
     }
 
-    public LiveData<List<Movie>> getNowPlayingMovie() {
+    public LiveData<List<Movie>> getNowPlayingMovies() {
         if (nowPlayingMovies == null) {
             nowPlayingMovies = new MutableLiveData<>();
             MoviesRepository.getInstance().getNowPlayingMovies(nowPlayingMovies);
