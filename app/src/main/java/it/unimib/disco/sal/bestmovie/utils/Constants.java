@@ -13,4 +13,5 @@ public class Constants {
     public static String VIDEOS = "videos";
     public static final String BUNDLE_ID_MOVIE_ID = "movie_id";
     public static final String IS_FROM_HOME = "IS_FROM_HOME";
+    public static final String YOUTUBE_PLAYER_API_KEY = "AIzaSyCB9iTJ6jK1uKZABP7og4vDk7mwtXoSgBg";
 }

@@ -28,7 +28,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
         public SearchViewHolder(View view) {
             super(view);
-            textViewMovieTitle = view.findViewById(R.id.textViewMovieTitle);
+            //textViewMovieTitle = view.findViewById(R.id.textViewMovieTitle);
         }
 
         public void bind(Movie movie, OnItemClickListener onItemClickListener) {

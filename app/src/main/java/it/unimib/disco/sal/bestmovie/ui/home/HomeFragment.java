@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment implements MovieCardRecyclerViewAdapt
                 if (movies.isEmpty()) {
                     Log.d(TAG, "getNowPlayingMovies: Response is empty");
                 } else {
-                    setUpList("Now Playing Movies", movies);
+                    setUpList(getString(R.string.now_playing), movies);
                     fragmentHomeBinding.pbHomeFragment.setVisibility(View.GONE);
                 }
             } else {
@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment implements MovieCardRecyclerViewAdapt
                 if (movies.isEmpty()) {
                     Log.d(TAG, "getTopRatedMovies: Response is empty");
                 } else {
-                    setUpList("Top Rated Movies", movies);
+                    setUpList(getString(R.string.top_rated), movies);
                     getNowPlayingMovies();
 
                 }
@@ -113,7 +113,7 @@ public class HomeFragment extends Fragment implements MovieCardRecyclerViewAdapt
                 if (movies.isEmpty()) {
                     Log.d(TAG, "getPopularMovies: Response is empty");
                 } else {
-                    setUpList("Popular Movies", movies);
+                    setUpList(getString(R.string.popular), movies);
                     getTopRatedMovies();
                 }
             } else {
@@ -129,7 +129,7 @@ public class HomeFragment extends Fragment implements MovieCardRecyclerViewAdapt
                 if (movies.isEmpty()) {
                     Log.d(TAG, "getUpcomingMovies: Response is empty");
                 } else {
-                    setUpList("Upcoming Movies", movies);
+                    setUpList(getString(R.string.upcoming), movies);
                     getPopularMovies();
                 }
             } else {

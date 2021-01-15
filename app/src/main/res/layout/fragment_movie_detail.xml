@@ -98,7 +98,7 @@
 
             <TextView
                 android:id="@+id/textView8"
-                android:text="@{`Total Votes: ` + movieDetail.vote_count}"
+                android:text="@{@string/total_votes + `: ` + movieDetail.vote_count}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -120,7 +120,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{`Release Date: ` + movieDetail.release_date}"
+                android:text="@{@string/release_date + `: ` + movieDetail.release_date}"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"

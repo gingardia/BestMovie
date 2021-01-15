@@ -2,6 +2,7 @@ package it.unimib.disco.sal.bestmovie.services;
 
 import it.unimib.disco.sal.bestmovie.models.AllGenreResponse;
 import it.unimib.disco.sal.bestmovie.models.Movie;
+import it.unimib.disco.sal.bestmovie.models.MovieCreditsResponse;
 import it.unimib.disco.sal.bestmovie.models.MovieDescription;
 import it.unimib.disco.sal.bestmovie.models.MoviesResponse;
 import it.unimib.disco.sal.bestmovie.models.PopularTopRatedApiResponse;
@@ -43,6 +44,11 @@ public interface MoviesService {
                                                @Query("api_key") String apiKey,
                                                @Query("language") String language,
                                                @Query("append_to_response") String videos);
+
+    @GET("movie/{id}/credits")
+    Call<MovieCreditsResponse> getMovieCredits(@Path("id") int movieID,
+                                               @Query("api_key") String apiKey,
+                                               @Query("language") String language);
 
     @GET("search/movie")
     Call<MoviesResponse> searchMovieByTitle(@Query("api_key") String apiKey,

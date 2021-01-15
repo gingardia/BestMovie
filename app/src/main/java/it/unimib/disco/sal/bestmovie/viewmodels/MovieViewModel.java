@@ -8,6 +8,7 @@ import java.util.List;
 
 import it.unimib.disco.sal.bestmovie.models.AllGenreResponse;
 import it.unimib.disco.sal.bestmovie.models.Movie;
+import it.unimib.disco.sal.bestmovie.models.MovieCreditsResponse;
 import it.unimib.disco.sal.bestmovie.models.MovieDescription;
 import it.unimib.disco.sal.bestmovie.models.MoviesResponse;
 import it.unimib.disco.sal.bestmovie.models.Resource;
@@ -16,10 +17,12 @@ import it.unimib.disco.sal.bestmovie.repositories.MoviesRepository;
 public class MovieViewModel extends ViewModel {
 
     private MutableLiveData<List<Movie>> popularMovies, topRatedMovies, upcomingMovies, nowPlayingMovies;
-    private MutableLiveData<MovieDescription> movieDescriptionResponse;
     private MutableLiveData<MoviesResponse> searchMovieByTitleResponse;
     private MutableLiveData<AllGenreResponse> getAllMovieGenresResponse;
     private LiveData<MoviesResponse> getMoviesSortedByResponse;
+    private LiveData<MovieDescription> movieDescriptionResponse;
+    private LiveData<MovieCreditsResponse> movieCreditsResponse;
+    private MoviesRepository moviesRepository;
 
     public LiveData<List<Movie>> getPopularMovies() {
         if (popularMovies == null) {
@@ -55,11 +58,15 @@ public class MovieViewModel extends ViewModel {
 
     // VERIFICARE CHE SIA CORRETTO
     public LiveData<MovieDescription> getMovieDescription(int movieID) {
-        if (movieDescriptionResponse == null) {
-            movieDescriptionResponse = new MutableLiveData<>();
-            MoviesRepository.getInstance().getMovieDescription(movieID);
-        }
+        moviesRepository.getInstance().getMovieDescription(movieID);
+        movieDescriptionResponse = moviesRepository.getInstance().getMovieDescriptionLiveData();
         return movieDescriptionResponse;
+    }
+
+    public LiveData<MovieCreditsResponse> getMovieCredits(int movieID) {
+        moviesRepository.getInstance().getMovieCredits(movieID);
+        movieCreditsResponse = moviesRepository.getInstance().getMovieCreditsLiveData();
+        return movieCreditsResponse;
     }
 
     // VERIFICARE CHE SIA CORRETTO

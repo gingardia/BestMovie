@@ -10,6 +10,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import it.unimib.disco.sal.bestmovie.R;
 import it.unimib.disco.sal.bestmovie.models.Genre;
 
 public class BindingUtils {
@@ -22,7 +23,7 @@ public class BindingUtils {
 
     @BindingAdapter("generes")
     public static void setGeneres(TextView textView, List<Genre> genres) {
-        textView.setText("Genre: ");
+        textView.setText(R.string.genre);
         if( genres != null && !genres.isEmpty()){
             for (int i = 0; i < genres.size(); i++) {
                 if (i == 0) {
@@ -42,4 +43,5 @@ public class BindingUtils {
         else
             view.setVisibility(View.VISIBLE);
     }
+
 }

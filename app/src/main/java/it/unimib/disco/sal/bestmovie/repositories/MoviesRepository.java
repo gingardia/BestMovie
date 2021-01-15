@@ -12,6 +12,7 @@ import java.util.List;
 
 import it.unimib.disco.sal.bestmovie.models.AllGenreResponse;
 import it.unimib.disco.sal.bestmovie.models.Movie;
+import it.unimib.disco.sal.bestmovie.models.MovieCreditsResponse;
 import it.unimib.disco.sal.bestmovie.models.MovieDescription;
 import it.unimib.disco.sal.bestmovie.models.MoviesResponse;
 import it.unimib.disco.sal.bestmovie.models.PopularTopRatedApiResponse;
@@ -35,6 +36,7 @@ public class MoviesRepository {
                                             popularMoviesResponse, upcomingMoviesResponse,
                                             searchMovieByTitleResponse, getMoviesSortedByResponse;
     private MutableLiveData<AllGenreResponse> getAllMovieGenresResponse;
+    private MutableLiveData<MovieCreditsResponse> movieCreditsLiveDataResponse;
 
     public MoviesRepository() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.MOVIE_API_BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
@@ -138,6 +140,7 @@ public class MoviesRepository {
     }
 
     public void getMovieDescription(int movieID) {
+        movieDescriptionLiveDataResponse = new MutableLiveData<>();
         Call<MovieDescription> call = moviesService.getMovieDescription(movieID, Constants.MOVIE_API_KEY, Constants.LANGUAGE, Constants.VIDEOS);
 
         call.enqueue(new Callback<MovieDescription>() {
@@ -153,6 +156,27 @@ public class MoviesRepository {
             @Override
             public void onFailure(Call<MovieDescription> call, Throwable t) {
                 movieDescriptionLiveDataResponse.postValue(null);
+            }
+        });
+    }
+
+    public void getMovieCredits(int movieID) {
+        movieCreditsLiveDataResponse = new MutableLiveData<>();
+        Call<MovieCreditsResponse> call = moviesService.getMovieCredits(movieID, Constants.MOVIE_API_KEY, Constants.LANGUAGE);
+
+        call.enqueue(new Callback<MovieCreditsResponse>() {
+            @Override
+            public void onResponse(Call<MovieCreditsResponse> call, Response<MovieCreditsResponse> response) {
+                if(response.body() != null) {
+                    movieCreditsLiveDataResponse.postValue(response.body());
+                } else {
+                    movieCreditsLiveDataResponse.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieCreditsResponse> call, Throwable t) {
+                movieCreditsLiveDataResponse.postValue(null);
             }
         });
     }
@@ -222,6 +246,10 @@ public class MoviesRepository {
         return movieDescriptionLiveDataResponse;
     }
 
+    public MutableLiveData<MovieCreditsResponse> getMovieCreditsLiveData() {
+        return movieCreditsLiveDataResponse;
+    }
+
     public MutableLiveData<MoviesResponse> getSearchMovieByTitleResponseLiveData(){
         return searchMovieByTitleResponse;
     }
@@ -233,59 +261,5 @@ public class MoviesRepository {
     public MutableLiveData<MoviesResponse> getMoviesSortedByResponseLiveData(){
         return getMoviesSortedByResponse;
     }
-
-    /*
-    public void getListSearchDetails(MutableLiveData<List<Movie>> moviesResource, int page, String query) {
-        Call<MoviesResponse> call = moviesService.getListSearch(Constants.MOVIE_API_KEY, Constants.LANGUAGE, page, query);
-
-        call.enqueue(new Callback<MoviesResponse>() {
-
-            @Override
-            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-
-                if(response.isSuccessful() && response.body() != null) {
-
-                    Resource<List<Movie>> resource = new Resource<>();
-                    resource.setData(response.body().getResults());
-                    resource.setTotalResults(response.body().getTotalResults());
-                    resource.setStatusCode(response.code());
-                    resource.setStatusMessage(response.message());
-                    moviesResource.postValue(resource);
-
-                    Log.d(TAG, "onResponse: " + response.body().getTotalResults());
-
-
-                } else if(response.errorBody() != null) {
-
-                    Resource<List<Movie>> resource = new Resource<>();
-                    //resource.setData(null);
-                    //resource.setTotalResults(null);
-                    resource.setStatusCode(response.code());
-                    try {
-                        resource.setStatusMessage(response.errorBody().string() + "- " + response.message());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    moviesResource.postValue(resource);
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MoviesResponse> call, Throwable t) {
-
-                Resource<List<Movie>> resource = new Resource<>();
-
-                resource.setStatusMessage(t.getMessage());
-                moviesResource.postValue(resource);
-
-                Log.d(TAG, "Errore " + t.getMessage());
-
-            }
-        });
-    }
-
-     */
-
 
 }
