@@ -14,4 +14,8 @@ public class Constants {
     public static final String BUNDLE_ID_MOVIE_ID = "movie_id";
     public static final String IS_FROM_HOME = "IS_FROM_HOME";
     public static final String YOUTUBE_PLAYER_API_KEY = "AIzaSyCB9iTJ6jK1uKZABP7og4vDk7mwtXoSgBg";
+    public static final String QUERY_PARAM_POPULARITY_SORT_BY_ASCENDING = "popularity.asc";
+    public static final String QUERY_PARAM_POPULARITY_SORT_BY_DESCENDING = "popularity.desc";
+    public static final String QUERY_PARAM_VOTE_COUNT_BY_ASCENDING = "vote_count.asc";
+    public static final String QUERY_PARAM_VOTE_COUNT_BY_DESCENDING = "vote_count.desc";
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class AllGenreResponse {
 
-    private List<Genre> genres;
+    public List<Genre> genres;
 
     public AllGenreResponse(List<Genre> genres) {
         this.genres = genres;
