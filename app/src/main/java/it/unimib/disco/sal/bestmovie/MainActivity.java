@@ -11,6 +11,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import java.util.Objects;
+
 import it.unimib.disco.sal.bestmovie.databinding.ActivityMainBinding;
 import it.unimib.disco.sal.bestmovie.viewmodels.MovieViewModel;
 
@@ -22,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Mostra un'icona nell'ActionBar
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_round);
+
 
         //requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         //getSupportActionBar().hide(); // hide the title bar

@@ -18,7 +18,7 @@ public class BindingUtils {
     @BindingAdapter("posterurl")
     public static void loadImage(ImageView view, String imageUrl) {
         final String URL = Constants.IMAGE_API_URL + imageUrl;
-        Picasso.get().load(URL).into(view);
+        Picasso.get().load(URL).placeholder(R.drawable.ic_launcher_foreground).into(view);
     }
 
     @BindingAdapter("generes")

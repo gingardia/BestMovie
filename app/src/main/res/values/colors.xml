@@ -8,4 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_silver">#C6C6C6</color>
+    <color name="dark_silver">#959595</color>
+    <color name="dark_orange">#B85E00</color>
+    <color name="orange_icon">#F18C13</color>
+    <color name="azzurro_complementare_orange_icon">#1378f1</color>
+    <color name="custom_blue">#0300b8</color>
+    <color name="verde_complementare_custom_blu">#b5b800</color>
+    <color name="dark_custom_blue">#000086</color>
+    <color name="lilla">#5e37ec</color>
+    <color name="grigio_logo_app">#373737</color>
 </resources>

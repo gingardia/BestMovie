@@ -60,7 +60,6 @@ public class MovieViewModel extends ViewModel {
         return nowPlayingMovies;
     }
 
-    // VERIFICARE CHE SIA CORRETTO
     public LiveData<MovieDescription> getMovieDescription(int movieID) {
         moviesRepository.getInstance().getMovieDescription(movieID);
         movieDescriptionResponse = moviesRepository.getInstance().getMovieDescriptionLiveData();
@@ -73,7 +72,6 @@ public class MovieViewModel extends ViewModel {
         return movieCreditsResponse;
     }
 
-    // VERIFICARE CHE SIA CORRETTO
     public LiveData<MoviesResponse> searchMoviesByTitle(String searchTerm){
         if(searchTerm != null && !searchTerm.isEmpty()){
             MoviesRepository.getInstance().searchMovieByTitle(searchTerm);
@@ -84,14 +82,12 @@ public class MovieViewModel extends ViewModel {
         }
     }
 
-    // VERIFICARE CHE SIA CORRETTO
     public LiveData<AllGenreResponse> getAllMovieGenres(){
         moviesRepository.getAllMovieGenres();
         getAllMovieGenresResponse = moviesRepository.getAllMovieGenresLiveData();
         return getAllMovieGenresResponse;
     }
 
-    // VERIFICARE CHE SIA CORRETTO
     public LiveData<MoviesResponse> filterMoviesBy(String filter, String genres){
         MoviesRepository.getInstance().getMoviesSortedBy(filter, genres);
         getMoviesSortedByResponse = MoviesRepository.getInstance().getMoviesSortedByResponseLiveData();

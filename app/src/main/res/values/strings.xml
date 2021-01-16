@@ -18,10 +18,10 @@
     <string name="low_popularity">Meno popolari</string>
     <string name="high_votes">Più votati</string>
     <string name="low_votes">Meno votati</string>
-    <string name="popular">Popolari</string>
-    <string name="top_rated">Top Rated</string>
-    <string name="upcoming">In uscita al cinema</string>
-    <string name="now_playing">Ora in onda</string>
+    <string name="popular">POPOLARI</string>
+    <string name="top_rated">TOP RATED</string>
+    <string name="upcoming">IN USCITA AL CINEMA</string>
+    <string name="now_playing">ORA NEI CINEMA</string>
     <string name="genres">Generi</string>
     <string name="release_date">Uscita</string>
     <string name="total_votes">Numero Voti</string>
