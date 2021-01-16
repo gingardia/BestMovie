@@ -13,7 +13,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import it.unimib.disco.sal.bestmovie.R;
 import it.unimib.disco.sal.bestmovie.adapters.ViewPagerFragmentAdapter;
 import it.unimib.disco.sal.bestmovie.databinding.FragmentSearchBinding;
-import it.unimib.disco.sal.bestmovie.viewmodels.ActivityMainViewModel;
 import it.unimib.disco.sal.bestmovie.viewmodels.MovieViewModel;
 
 public class SearchFragment extends Fragment {

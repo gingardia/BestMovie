@@ -182,6 +182,7 @@ public class MoviesRepository {
     }
 
     public void searchMovieByTitle(String searchQuery) {
+        searchMovieByTitleResponse = new MutableLiveData<>();
         Call<MoviesResponse> call = moviesService.searchMovieByTitle(Constants.MOVIE_API_KEY, Constants.LANGUAGE, searchQuery);
 
         call.enqueue(new Callback<MoviesResponse>() {
@@ -202,9 +203,8 @@ public class MoviesRepository {
     }
 
     public void getAllMovieGenres(){
-        Call<AllGenreResponse> call = moviesService.getAllMovieGenres(Constants.MOVIE_API_KEY, Constants.LANGUAGE);
-
-        call.enqueue(new Callback<AllGenreResponse>() {
+        getAllMovieGenresResponse = new MutableLiveData<>();
+        moviesService.getAllMovieGenres(Constants.MOVIE_API_KEY,Constants.LANGUAGE).enqueue(new Callback<AllGenreResponse>() {
             @Override
             public void onResponse(Call<AllGenreResponse> call, @NotNull Response<AllGenreResponse> response) {
                 if(response == null || response.body() == null){
@@ -223,6 +223,7 @@ public class MoviesRepository {
     }
 
     public void getMoviesSortedBy(String filter, String genres){
+        getMoviesSortedByResponse = new MutableLiveData<>();
         Call<MoviesResponse> call = moviesService.getMoviesSortedBy(Constants.MOVIE_API_KEY, Constants.LANGUAGE, genres, filter);
 
         call.enqueue(new Callback<MoviesResponse>() {

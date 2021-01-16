@@ -12,21 +12,21 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import it.unimib.disco.sal.bestmovie.databinding.ActivityMainBinding;
-import it.unimib.disco.sal.bestmovie.viewmodels.ActivityMainViewModel;
+import it.unimib.disco.sal.bestmovie.viewmodels.MovieViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding activityMainDataBinding = null;
-    private ActivityMainViewModel activityMainViewModel = null;
+    private MovieViewModel activityMainViewModel = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar().hide(); // hide the title bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
+        //requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        //getSupportActionBar().hide(); // hide the title bar
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        //        WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
         setUpDataBindingAndViewModel();
         setUpNavigation();

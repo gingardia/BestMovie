@@ -24,6 +24,10 @@ public class MovieViewModel extends ViewModel {
     private LiveData<MovieCreditsResponse> movieCreditsResponse;
     private MoviesRepository moviesRepository;
 
+    public MovieViewModel() {
+        moviesRepository = new MoviesRepository();
+    }
+
     public LiveData<List<Movie>> getPopularMovies() {
         if (popularMovies == null) {
             popularMovies = new MutableLiveData<>();
@@ -82,8 +86,8 @@ public class MovieViewModel extends ViewModel {
 
     // VERIFICARE CHE SIA CORRETTO
     public LiveData<AllGenreResponse> getAllMovieGenres(){
-        MoviesRepository.getInstance().getAllMovieGenres();
-        getAllMovieGenresResponse = MoviesRepository.getInstance().getAllMovieGenresLiveData();
+        moviesRepository.getAllMovieGenres();
+        getAllMovieGenresResponse = moviesRepository.getAllMovieGenresLiveData();
         return getAllMovieGenresResponse;
     }
 

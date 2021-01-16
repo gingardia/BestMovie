@@ -11,22 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import it.unimib.disco.sal.bestmovie.R;
-import it.unimib.disco.sal.bestmovie.adapters.HomeAdapter;
 import it.unimib.disco.sal.bestmovie.adapters.MovieCardRecyclerViewAdapter;
 import it.unimib.disco.sal.bestmovie.databinding.FragmentHomeBinding;
-import it.unimib.disco.sal.bestmovie.databinding.FragmentHomeNewBinding;
 import it.unimib.disco.sal.bestmovie.models.Movie;
-import it.unimib.disco.sal.bestmovie.models.Resource;
 import it.unimib.disco.sal.bestmovie.utils.Constants;
 import it.unimib.disco.sal.bestmovie.viewmodels.MovieViewModel;
 

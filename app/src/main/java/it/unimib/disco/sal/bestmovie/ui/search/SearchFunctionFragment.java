@@ -20,7 +20,6 @@ import it.unimib.disco.sal.bestmovie.adapters.MovieCardRecyclerViewAdapter;
 import it.unimib.disco.sal.bestmovie.databinding.FragmentSearchFunctionBinding;
 import it.unimib.disco.sal.bestmovie.models.Movie;
 import it.unimib.disco.sal.bestmovie.utils.Constants;
-import it.unimib.disco.sal.bestmovie.viewmodels.ActivityMainViewModel;
 import it.unimib.disco.sal.bestmovie.viewmodels.MovieViewModel;
 
 public class SearchFunctionFragment extends Fragment implements MovieCardRecyclerViewAdapter.OnMovieCardClicked {
