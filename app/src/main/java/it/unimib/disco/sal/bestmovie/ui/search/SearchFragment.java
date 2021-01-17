@@ -20,7 +20,7 @@ public class SearchFragment extends Fragment {
     private MovieViewModel activityMainViewModel;
     private static final String TAG = "SearchFragment";
     private FragmentSearchBinding fragmentSearchBinding;
-    private final String[] titles = {"Search", "Filters"};
+    private final String[] titles = {"Cerca", "Filtri"};
 
     public SearchFragment() {
         super(R.layout.fragment_search);

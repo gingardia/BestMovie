@@ -27,4 +27,5 @@
     <string name="total_votes">Numero Voti</string>
     <string name="genre">Genere: </string>
     <string name="cast_members">Attori</string>
+    <string name="other_filters">Altri filtri</string>
 </resources>

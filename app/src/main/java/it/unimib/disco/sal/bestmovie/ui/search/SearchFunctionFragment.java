@@ -79,7 +79,7 @@ public class SearchFunctionFragment extends Fragment implements MovieCardRecycle
 
     private void searchMovieByTitle(String query) {
         fragmentSearchByTitleBinding.pbSearchByTitle.setVisibility(View.VISIBLE);
-        fragmentSearchByTitleBinding.tvSearchStatus.setText("Searching...");
+        fragmentSearchByTitleBinding.tvSearchStatus.setText("Ricerca...");
         activityMainViewModel.searchMoviesByTitle(query).observe(getViewLifecycleOwner(), moviesResponse -> {
             if (moviesResponse == null) {
                 fragmentSearchByTitleBinding.pbSearchByTitle.setVisibility(View.GONE);

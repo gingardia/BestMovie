@@ -130,7 +130,7 @@ public class FiltersFunctionFragment extends Fragment implements MovieCardRecycl
                 Toast.makeText(requireContext(), R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
             }else{
                 fragmentFiltersFunctionBinding.pbSearchMoviesWithFilters.setVisibility(View.GONE);
-                Log.d(TAG, "getGenres: Here");
+                Log.d(TAG, "getGenres: Qui");
                 for(Genre genre: allGenreResponse.genres){
                     Chip chip = (Chip)requireActivity().getLayoutInflater().inflate(R.layout.filter_chip, fragmentFiltersFunctionBinding.cgGenres, false);
                     chip.setText(genre.getName());
