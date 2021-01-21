@@ -21,7 +21,7 @@
         android:layout_marginRight="8dp">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageViewHomePoster"
             posterurl="@{movie.posterPath}"
             android:layout_width="0dp"
             android:layout_height="250dp"
@@ -45,7 +45,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewHomePoster" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
