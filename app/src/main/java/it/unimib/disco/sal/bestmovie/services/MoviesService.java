@@ -32,13 +32,6 @@ public interface MoviesService {
                                              @Query("language") String language,
                                              @Query("region") String region);
 
-    // DA MODIFICARE
-    @GET("movie/searchList")
-    Call<PopularTopRatedApiResponse> getListSearch(@Query("api_key") String apiKey,
-                                                   @Query("language") String language,
-                                                   @Query("page") int page,
-                                                   @Query("query") String query);
-
     @GET("movie/{id}")
     Call<MovieDescription> getMovieDescription(@Path("id") int movieID,
                                                @Query("api_key") String apiKey,
@@ -64,8 +57,4 @@ public interface MoviesService {
                                            @Query("language") String language,
                                            @Query("with_genres") String genreIDS,
                                            @Query("sort_by") String sortBy);
-
-    @GET("movie/latest")
-    Call<Movie> getLatestMovie(@Query("api_key") String apiKey,
-                               @Query("language") String language);
 }

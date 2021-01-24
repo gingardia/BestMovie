@@ -24,7 +24,7 @@ import it.unimib.disco.sal.bestmovie.viewmodels.MovieViewModel;
 
 public class SearchFunctionFragment extends Fragment implements MovieCardRecyclerViewAdapter.OnMovieCardClicked {
 
-    private final String TAG = "SearchByTitleFragment";
+    private final String TAG = "SearchFunctionFragment";
     private final SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
     private FragmentSearchFunctionBinding fragmentSearchByTitleBinding;

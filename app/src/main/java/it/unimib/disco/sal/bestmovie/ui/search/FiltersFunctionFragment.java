@@ -33,7 +33,7 @@ public class FiltersFunctionFragment extends Fragment implements MovieCardRecycl
 
     private FragmentFiltersFunctionBinding fragmentFiltersFunctionBinding;
     private MovieViewModel activityMainViewModel;
-    private final String TAG = "SearchByFiltersFragment";
+    private final String TAG = "FiltersFunctionFragment";
     private View view;
 
     public FiltersFunctionFragment() {
@@ -90,6 +90,7 @@ public class FiltersFunctionFragment extends Fragment implements MovieCardRecycl
                     if(i == 0){
                         genreIDs.append(id.toString());
                     }else{
+                        //Concatenazione filtri selezionati
                         genreIDs.append("," + id.toString());
                     }
                     i++;
@@ -130,7 +131,7 @@ public class FiltersFunctionFragment extends Fragment implements MovieCardRecycl
                 Toast.makeText(requireContext(), R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
             }else{
                 fragmentFiltersFunctionBinding.pbSearchMoviesWithFilters.setVisibility(View.GONE);
-                Log.d(TAG, "getGenres: Qui");
+                //Log.d(TAG, "getGenres: Qui");
                 for(Genre genre: allGenreResponse.genres){
                     Chip chip = (Chip)requireActivity().getLayoutInflater().inflate(R.layout.filter_chip, fragmentFiltersFunctionBinding.cgGenres, false);
                     chip.setText(genre.getName());

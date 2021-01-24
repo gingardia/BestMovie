@@ -36,7 +36,6 @@ public class SearchFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
 
         fragmentSearchBinding.viewPagerTabLayout.setAdapter(new ViewPagerFragmentAdapter(requireActivity(), titles));

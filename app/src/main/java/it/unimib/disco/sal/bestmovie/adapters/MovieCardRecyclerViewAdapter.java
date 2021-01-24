@@ -16,7 +16,6 @@ import it.unimib.disco.sal.bestmovie.models.Movie;
 public class MovieCardRecyclerViewAdapter extends RecyclerView.Adapter<MovieCardRecyclerViewAdapter.MovieCardViewHolder> {
     private final OnMovieCardClicked onMovieCardClicked;
     private final List<Movie> movieList;
-    private  final String TAG = "66";
     private Boolean isShowingInSearch;
 
     public MovieCardRecyclerViewAdapter(OnMovieCardClicked onMovieCardClicked, List<Movie> movieList, Boolean isShowingInSearch) {

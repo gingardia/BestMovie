@@ -49,7 +49,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:iconifiedByDefault="false"
-        android:queryHint="Inserisci il titolo di un film!"
+        android:queryHint="@string/search_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
