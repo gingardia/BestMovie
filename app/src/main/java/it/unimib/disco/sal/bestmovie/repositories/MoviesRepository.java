@@ -1,23 +1,14 @@
 package it.unimib.disco.sal.bestmovie.repositories;
 
 import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 import java.util.List;
-
 import it.unimib.disco.sal.bestmovie.models.AllGenreResponse;
 import it.unimib.disco.sal.bestmovie.models.Movie;
 import it.unimib.disco.sal.bestmovie.models.MovieCreditsResponse;
 import it.unimib.disco.sal.bestmovie.models.MovieDescription;
 import it.unimib.disco.sal.bestmovie.models.MoviesResponse;
-import it.unimib.disco.sal.bestmovie.models.PopularTopRatedApiResponse;
-import it.unimib.disco.sal.bestmovie.models.Resource;
-import it.unimib.disco.sal.bestmovie.models.UpcomingNowPlayingApiResponse;
 import it.unimib.disco.sal.bestmovie.services.MoviesService;
 import it.unimib.disco.sal.bestmovie.utils.Constants;
 import retrofit2.Call;
@@ -32,9 +23,7 @@ public class MoviesRepository {
     private static MoviesRepository instance;
     private MoviesService moviesService;
     private MutableLiveData<MovieDescription> movieDescriptionLiveDataResponse;
-    private MutableLiveData<MoviesResponse> nowPlayingMoviesResponse, topRatedMoviesResponse,
-                                            popularMoviesResponse, upcomingMoviesResponse,
-                                            searchMovieByTitleResponse, getMoviesSortedByResponse;
+    private MutableLiveData<MoviesResponse> searchMovieByTitleResponse, getMoviesSortedByResponse;
     private MutableLiveData<AllGenreResponse> getAllMovieGenresResponse;
     private MutableLiveData<MovieCreditsResponse> movieCreditsLiveDataResponse;
 

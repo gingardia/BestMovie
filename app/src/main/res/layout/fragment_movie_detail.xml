@@ -56,7 +56,7 @@
                     app:showFullScreenButton="false" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/textViewMovieDetailsTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -66,11 +66,11 @@
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewMovieDetailsPoster"
                     app:layout_constraintTop_toBottomOf="@+id/youTubePlayerView2" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/textViewMovieDetailsTagline"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -80,8 +80,8 @@
                     android:textSize="16sp"
                     android:visibility="@{movieDetail.tagline}"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                    app:layout_constraintStart_toEndOf="@+id/imageViewMovieDetailsPoster"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewMovieDetailsTitle" />
 
                 <TextView
                     android:id="@+id/tv_movie_description"
@@ -99,10 +99,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewMovieDetailsGenre" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/textViewMovieDetailsVoteCount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -113,11 +113,11 @@
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintStart_toEndOf="@+id/imageViewMovieDetailsPoster"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewMovieDetailsTagline" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/textViewMovieDetailsReleaseDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -127,11 +127,11 @@
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                    app:layout_constraintStart_toEndOf="@+id/imageViewMovieDetailsPoster"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewMovieDetailsVoteCount" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/textViewMovieDetailsGenre"
                     generes="@{movieDetail.genres}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -143,10 +143,10 @@
                     android:visibility="@{movieDetail.genres.get(0).name}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageViewMovieDetailsPoster" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imageViewMovieDetailsPoster"
                     posterurl="@{movieDetail.poster_path}"
                     android:layout_width="120dp"
                     android:layout_height="180dp"
@@ -158,7 +158,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/youTubePlayerView2" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/textViewMovieDetailsVoteAverage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/orange_icon"
@@ -166,8 +166,8 @@
                     android:padding="4dp"
                     android:text="@{movieDetail.vote_average.toString()}"
                     android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewMovieDetailsPoster"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewMovieDetailsPoster"
                     app:drawableLeftCompat="@drawable/ic_star"
                     app:drawableStartCompat="@drawable/ic_star" />
 

@@ -1,12 +1,9 @@
 package it.unimib.disco.sal.bestmovie.services;
 
 import it.unimib.disco.sal.bestmovie.models.AllGenreResponse;
-import it.unimib.disco.sal.bestmovie.models.Movie;
 import it.unimib.disco.sal.bestmovie.models.MovieCreditsResponse;
 import it.unimib.disco.sal.bestmovie.models.MovieDescription;
 import it.unimib.disco.sal.bestmovie.models.MoviesResponse;
-import it.unimib.disco.sal.bestmovie.models.PopularTopRatedApiResponse;
-import it.unimib.disco.sal.bestmovie.models.UpcomingNowPlayingApiResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

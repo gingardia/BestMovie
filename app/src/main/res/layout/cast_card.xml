@@ -17,7 +17,7 @@
         android:layout_marginRight="8dp">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageViewCastMember"
             posterurl="@{cast.profilePath}"
             android:layout_width="0dp"
             android:layout_height="250dp"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewCastMember"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
@@ -41,7 +41,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewCastMember" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -25,7 +25,7 @@
     <string name="genres">Generi</string>
     <string name="release_date">Uscita</string>
     <string name="total_votes">Numero Voti</string>
-    <string name="genre">Genere: </string>
+    <string name="genre">Genere:\u0020</string>
     <string name="cast_members">Attori</string>
     <string name="other_filters">Altri filtri</string>
 </resources>
